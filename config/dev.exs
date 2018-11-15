@@ -58,3 +58,4 @@ config :food_finder, FoodFinder.Repo,
   database: "food_finder_dev",
   hostname: "localhost",
   pool_size: 10
+  
