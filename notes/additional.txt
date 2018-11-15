@@ -1,0 +1,6 @@
+For minimum, server needs to:
+- get a response of location
+and then:
+- reply to people about restaurants around them.
+
+Do this by sunday.

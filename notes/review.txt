@@ -1,0 +1,5 @@
+Review
+- has a user
+- restaurant id
+- rating nmber
+- comment text (actual review)
