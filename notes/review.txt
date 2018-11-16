@@ -3,3 +3,5 @@ Review
 - restaurant id
 - rating nmber
 - comment text (actual review)
+
+mix phx.gen.json Ratings Rating ratings user_id:id restaurant_id:id rating_number:integer comment_text:text

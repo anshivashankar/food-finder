@@ -20,7 +20,13 @@ defmodule FoodFinderWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", FoodFinderWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", FoodFinderWeb do
+     pipe_through :api
+
+     resources "/sessions", SessionController, only: [:create]
+     resources "/users", UserController
+
+     resources "/ratings", RatingController
+
+   end
 end
