@@ -12,14 +12,14 @@ defmodule FoodFinderWeb.LocationController do
     #             long: -71.089172}
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
     <> "location="
-    <> to_string(location.lat) <> ","
-    <> to_string(location.long) <> "&"
+    <> to_string(location["lat"]) <> ","
+    <> to_string(location["long"]) <> "&"
     <> "radius=2000&"
     <> "keyword=food&"
 
     <> "key=" <> System.get_env("GOOGLE_API_KEY")
 
-    IO.inspect(url)
+    IO.inspect(location)
 
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
