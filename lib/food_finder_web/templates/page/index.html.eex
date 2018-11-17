@@ -1,9 +1,8 @@
 
 <div id="root">
-  <div class="row">
-    <div class="col-12">
+  <div className="row">
+    <div className="col-12">
       <p>React component loading...</p>
     </div>
   </div>
 </div>
-

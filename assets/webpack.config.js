@@ -18,7 +18,7 @@ module.exports = (env, options) => ({
   },
   module: {
     rules: [
-      {
+       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
@@ -37,6 +37,9 @@ module.exports = (env, options) => ({
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css', '.scss'],
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
