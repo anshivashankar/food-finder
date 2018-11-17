@@ -50,7 +50,7 @@ class Root extends React.Component {
             </form>
         </div>
         <div class="container">
-            <p> Not registered yet? <a href="register"> Sign up here </a> </p>
+            <p> Not registered yet? <a href="/register"> Sign up here </a> </p>
         </div>
     </div>
     }

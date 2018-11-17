@@ -28,3 +28,10 @@ $(() => {
   let node = $('#root')[0];
   root_init(node);
 });
+
+import register_init from "./register";
+
+$(() => {
+  let node = $('#register')[0];
+  register_init(node);
+});
