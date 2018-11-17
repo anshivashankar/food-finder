@@ -37,6 +37,15 @@ $ mix ecto.create
 $ mix ecto.migrate
 ```
 
+### Register a Google API Key
+Go to https://console.cloud.google.com and figure out how to make an API Key
+Then export it to your environment so that the app can use it.
+```
+export GOOGLE_API_KEY=<insert key here>
+```
+This will add the variable for your current terminal session. Put it in your bashrc
+or equivalent for your terminal to have it be loaded for other terminal sessions.
+
 ### Starting Phoenix
 
 To start your Phoenix server:
