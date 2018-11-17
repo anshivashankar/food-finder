@@ -4,7 +4,10 @@ import _ from 'lodash';
 import $ from 'jquery';
 import { Provider, connect } from 'react-redux';
 
-export default function root_init(node, store) {
+import store from './store';
+
+
+export default function root_init(node) {
 let ConnectedRoot = connect(state2props)(Root)
 
   ReactDOM.render(
