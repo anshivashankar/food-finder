@@ -7,18 +7,15 @@ defmodule FoodFinderWeb.LocationController do
   action_fallback FoodFinderWeb.FallbackController
 
   alias FoodFinder.Users.User
-  # %{"location" => location}
-  def index(conn, _params) do
-    # location has two keys:
-    # lat
-    # long
+  def create(conn, %{"location" => location}) do
+    #location = %{lat: 42.339806,
+    #             long: -71.089172}
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-    #<> "input=food&"
-    #<> "inputtype=textquery&"
-    <> "location=42.339806,-71.089172&"
+    <> "location="
+    <> to_string(location.lat) <> ","
+    <> to_string(location.long) <> "&"
     <> "radius=2000&"
     <> "keyword=food&"
-
 
     <> "key=placeholder"
 

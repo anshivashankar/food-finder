@@ -23,7 +23,7 @@ defmodule FoodFinderWeb.Router do
   scope "/api", FoodFinderWeb do
      pipe_through :api
 
-     resources "/location", LocationController, only: [:index]
+     resources "/location", LocationController, only: [:create]
 
      resources "/sessions", SessionController, only: [:create]
      resources "/users", UserController
