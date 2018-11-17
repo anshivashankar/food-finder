@@ -17,7 +17,7 @@ defmodule FoodFinderWeb.LocationController do
     <> "radius=2000&"
     <> "keyword=food&"
 
-    <> "key=placeholder"
+    <> "key=" <> System.get_env("GOOGLE_API_KEY")
 
     IO.inspect(url)
 
