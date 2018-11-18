@@ -14,12 +14,11 @@ defmodule FoodFinderWeb.LocationController do
     <> "location="
     <> to_string(location["lat"]) <> ","
     <> to_string(location["long"]) <> "&"
-    <> "radius=2000&"
-    <> "keyword=food&"
-
+    <> "radius=5000&"
+    <> "type=restaurant&"
     <> "key=" <> System.get_env("GOOGLE_API_KEY")
 
-    IO.inspect(location)
+    IO.inspect(url)
 
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
