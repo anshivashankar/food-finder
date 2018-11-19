@@ -21,17 +21,11 @@ import "bootstrap";
 
 // import socket from "./socket"
 
-import root_init from "./root";
 import store from './store';
+
+import root_init from "./root";
 
 $(() => {
   let node = $('#root')[0];
   root_init(node);
-});
-
-import register_init from "./register";
-
-$(() => {
-  let node = $('#register')[0];
-  register_init(node);
 });

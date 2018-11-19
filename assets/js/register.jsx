@@ -6,15 +6,6 @@ import { Provider, connect } from 'react-redux';
 
 import store from './store';
 
-export default function register_init(node) {
-    let ConnectedRoot1 = connect(state2props)(Register)
-    
-      ReactDOM.render(
-        <Provider store={store}>
-          <ConnectedRoot1 />
-        </Provider>, node);
-    }
-
 class Register extends React.Component {
     constructor(props) {
       super(props);
@@ -63,5 +54,6 @@ function state2props(state) {
       session: state.session
     };
   }
+
+  export default connect(state2props)(Register);
   
-//   export default connect(state2props)(register);

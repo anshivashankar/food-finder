@@ -1,20 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import _ from 'lodash';
 import $ from 'jquery';
-import { Provider, connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import store from './store';
+import Register from './register';
+
 
 
 export default function root_init(node) {
-let ConnectedRoot = connect(state2props)(Root)
-
-  ReactDOM.render(
-    <Provider store={store}>
-      <ConnectedRoot />
-    </Provider>, node);
-}
+    let prods = window.tasks;
+    let ConnectedRoot = connect(state2props)(Root)
+  
+    ReactDOM.render(
+      <Provider store={store}>
+        <ConnectedRoot />
+      </Provider>, node);
+  }
 
 class Root extends React.Component {
     constructor(props) {
@@ -25,35 +30,52 @@ class Root extends React.Component {
     }
   
     render() {
-        return <div>     
-        <div class="container">
-            <div class="row">
-                <div class="col-sm"></div>
-                <div class="col-sm">
-                    <h1 class="header"> Welcome! </h1>
-                </div>
-                <div class="col-sm"></div>
-            </div>
-        </div>
-        <div class="container login-form">
-            <form>
-                <div class="form-group">
-                    <label for="loginEmail">Email address</label>
-                    <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
-                    <small id="emailHelp" class="form-text text-muted">Your email and information is safe with us!</small>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" class="form-control" id="loginPassword" placeholder="Password"/>
-                </div>
-                <button type="submit" class="btn btn-primary">Log in</button>
-            </form>
-        </div>
-        <div class="container">
-            <p> Not registered yet? <a href="/register"> Sign up here </a> </p>
-        </div>
-    </div>
+    //let {session, users} = this.props;
+
+        return <div>
+            <Router>
+                <div>
+                <Route path="/" exact={true} render={() =>
+                    <Login />
+                } />
+                <Route path="/register" exact={true} render={() =>
+                    <Register />
+                } />   
+                </div> 
+            </Router>
+        </div>    
+        
     }
+}
+
+function Login(props) {
+    return <div><div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            <h1 class="header"> Welcome! </h1>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>
+<div class="container login-form">
+    <form>
+        <div class="form-group">
+            <label for="loginEmail">Email address</label>
+            <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
+            <small id="emailHelp" class="form-text text-muted">Your email and information is safe with us!</small>
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" class="form-control" id="loginPassword" placeholder="Password"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+</div>
+<div class="container">
+    <p> Not registered yet? <a href="/register"> Sign up here </a> </p>
+</div>
+</div>
 }
 
 function state2props(state) {

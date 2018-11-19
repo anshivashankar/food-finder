@@ -1,5 +1,5 @@
 
-<div id="register">
+<div id="root">
   <div className="row">
     <div className="col-12">
       <p>React component loading...</p>
