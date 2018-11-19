@@ -8,7 +8,7 @@ defmodule FoodFinderWeb.SessionController do
 
   alias FoodFinder.Users.User
 
-  def create(conn, %{"email" => email, "password_hash" => password}) do
+  def create(conn, %{"email" => email, "password" => password}) do
     with %User{} = user <- FoodFinder.Users.get_and_auth_user(email, password) do
       resp = %{
         data: %{
