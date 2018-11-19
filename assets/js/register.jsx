@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import $ from 'jquery';
 import { Provider, connect } from 'react-redux';
-
+import api from './api';
 import store from './store';
 
 class Register extends React.Component {
@@ -41,7 +41,7 @@ return <div>
             <label for="registerPassword">Password</label>
             <input type="password" class="form-control" id="registerPassword" placeholder="Password"/>
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" onClick={(e) => { e.preventDefault(); api.create_user()}} class="btn btn-primary">Register</button>
     </form>
 </div>
 </div>

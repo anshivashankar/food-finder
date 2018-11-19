@@ -7,6 +7,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 
 import store from './store';
+import api from './api';
 import Register from './register';
 
 
@@ -30,9 +31,39 @@ class Root extends React.Component {
     }
   
     render() {
-    //let {session, users} = this.props;
+    let {session, users} = this.props;
 
+    if (this.props.session) {
+       return <div >
+        <MainPages />
+       </div> 
+    }
+    else {
         return <div>
+        <NoSession />
+    </div>   
+    }
+    }
+}
+
+function MainPages(props) {
+    return <div>
+    <Router>
+        <div>
+            <Route path="/main-page" exact={true} render={() =>
+                <MainPage />
+            } />    
+            <Route path="/profile" exact={true} render={() =>
+                <Profile />}/>    
+        </div> 
+    </Router>
+</div>  
+}
+
+
+
+function NoSession(props) {
+    return <div>
             <Router>
                 <div>
                 <Route path="/" exact={true} render={() =>
@@ -40,12 +71,10 @@ class Root extends React.Component {
                 } />
                 <Route path="/register" exact={true} render={() =>
                     <Register />
-                } />   
+                } />      
                 </div> 
             </Router>
-        </div>    
-        
-    }
+        </div>  
 }
 
 function Login(props) {
@@ -69,7 +98,7 @@ function Login(props) {
             <label for="loginPassword">Password</label>
             <input type="password" class="form-control" id="loginPassword" placeholder="Password"/>
         </div>
-        <button type="submit" class="btn btn-primary">Log in</button>
+        <button type="submit" onClick={(e) => { e.preventDefault(); api.create_session()}} class="btn btn-primary">Log in</button>
     </form>
 </div>
 <div class="container">

@@ -72,7 +72,6 @@ class TheServer {
     }
     store.dispatch(action);
 }
-
 }
 
 export default new TheServer();
