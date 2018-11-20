@@ -16,7 +16,7 @@ export default function Header() {
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
+          <a class="nav-link" href="/profile">Profile</a>
         </li>
       </ul>
       <form class="form-inline">

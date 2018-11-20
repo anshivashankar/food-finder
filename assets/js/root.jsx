@@ -11,7 +11,7 @@ import api from './api';
 import Register from './register';
 import MainPage from './main-page';
 import Header from './header';
-//import Profile from './profile';
+import Profile from './profile';
 
 export default function root_init(node) {
     let prods = window.tasks;

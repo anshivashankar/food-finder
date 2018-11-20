@@ -18,7 +18,7 @@ defmodule FoodFinderWeb.Router do
 
     get "/", PageController, :index
     get "/register", PageController, :register
-    
+    get "/profile", PageController, :profile
     
   end
 
