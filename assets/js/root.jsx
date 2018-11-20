@@ -52,7 +52,7 @@ function MainPages(props) {
     return <div>
     <Router>
         <div>
-            <Route path="/main-page" exact={true} render={() =>
+            <Route path="/" exact={true} render={() =>
                <div> <MainPage /> </div>
             } />    
             <Route path="/profile" exact={true} render={() =>
@@ -61,8 +61,6 @@ function MainPages(props) {
     </Router>
 </div>  
 }
-
-
 
 function NoSession(props) {
     return <div>
