@@ -45,7 +45,8 @@ defmodule FoodFinder.MixProject do
       {:cowboy, "~> 2.5"},
       {:distillery, "~> 2.0"},
       {:comeonin, "~> 4.1"},
-      {:argon2_elixir, "~> 1.3"}
+      {:argon2_elixir, "~> 1.3"},
+      {:httpoison, "~> 1.4"}
     ]
   end
 
