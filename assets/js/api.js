@@ -78,9 +78,18 @@ class TheServer {
   }
 
   fetch_restaurants(location) {
-    $.ajax(
-
-    );
+    let lat = location.lat;
+    let lo = location.long;
+    $.ajax("/api/v1/location", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({lat, lo}),
+      success: (resp) => {
+        console.log(resp);
+        // TODO response here
+      }
+    });
   }
 }
 

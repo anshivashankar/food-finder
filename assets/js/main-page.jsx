@@ -12,22 +12,25 @@ import store from './store';
 class MainPage extends React.Component {
     constructor(props) {
       super(props);
+
       this.state = {
-        location: this.getUserLoc(),
+        location: {lat: 0, long: 0},
         restaurants: {},
       }
+      this.getUserLoc();
+      console.log(this.getRestaurants());
     }
 
     onPositionRecieved(position) {
-      let lat = position.coords.latitude;
-      let long = position.coords.longitude;
+      let latNew = position.coords.latitude;
+      let longNew = position.coords.longitude;
       this.setState({
-        location: {lat, long}
-      })
+        location: {lat: latNew, long: longNew}
+      });
     }
 
     getUserLoc() {
-      navigator.geolocation.getCurrentPosition(this.onPositionRecieved)
+      navigator.geolocation.getCurrentPosition(this.onPositionRecieved.bind(this))
     }
 
     getRestaurants() {
@@ -40,7 +43,8 @@ class MainPage extends React.Component {
       }
         return <div>
                 <h1> This is where the magic happens </h1>
-                {this.state.location}
+                {this.state.location.lat}
+                {this.state.location.long}
             </div>
             }
     }
