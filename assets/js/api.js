@@ -61,6 +61,7 @@ class TheServer {
           type: 'NEW_SESSION',
           data: resp.data,
         });
+        localStorage.setItem('token', resp.data.token);
         window.location.href = '/main-page';
       }
     });

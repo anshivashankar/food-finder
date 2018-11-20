@@ -32,8 +32,10 @@ class Root extends React.Component {
   
     render() {
     let {session, users} = this.props;
+    const token = localStorage.getItem('token'); // currently null
+    console.log(token);
 
-    if (this.props.session) {
+    if (token) {
        return <div >
         <MainPages />
        </div> 

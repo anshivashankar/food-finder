@@ -19,7 +19,7 @@ defmodule FoodFinderWeb.Router do
     get "/", PageController, :index
     get "/register", PageController, :register
     get "/main-page", PageController, :mainPage
-
+    
   end
 
   # Other scopes may use custom stacks.
