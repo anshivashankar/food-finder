@@ -104,8 +104,8 @@ function Login(props) {
         </div>
         <button onClick={(e) => { e.preventDefault(); api.create_session()}} class="btn btn-primary">Log in</button>
     </form>
-
 </div>
+
 <div class="container">
     <p> Not registered yet? <a href="/register"> Sign up here </a> </p>
 </div>

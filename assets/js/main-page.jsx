@@ -16,8 +16,19 @@ class MainPage extends React.Component {
     render() {
         console.log("it's rendering!");
         return <div>
-                <h1> This is where the magic happens </h1>
-            </div>
+          
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+      <h1>Welcome to Food Finder!</h1>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+</div>
+          </div>
             }
     }
 
