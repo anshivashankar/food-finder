@@ -14,19 +14,24 @@ class MainPage extends React.Component {
       super(props);
       this.state = {
         location: this.getUserLoc(),
-        restaurants: [],
+        restaurants: {},
       }
     }
 
     onPositionRecieved(position) {
-      console.log(position);
+      let lat = position.coords.latitude;
+      let long = position.coords.longitude;
+      this.setState({
+        location: {lat, long}
+      })
     }
 
     getUserLoc() {
-      var loc = navigator.geolocation.getCurrentPosition(this.onPositionRecieved)
-      this.setState({
-        location: loc,
-      });
+      navigator.geolocation.getCurrentPosition(this.onPositionRecieved)
+    }
+
+    getRestaurants() {
+      api.fetch_restaurants(this.state.location);
     }
     
     render() {

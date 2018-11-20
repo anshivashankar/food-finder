@@ -75,7 +75,13 @@ class TheServer {
     })
 
     localStorage.removeItem('token');
-}
+  }
+
+  fetch_restaurants(location) {
+    $.ajax(
+
+    );
+  }
 }
 
 export default new TheServer();
