@@ -20,3 +20,12 @@ import "bootstrap";
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+import store from './store';
+
+import root_init from "./root";
+
+$(() => {
+  let node = $('#root')[0];
+  root_init(node);
+});

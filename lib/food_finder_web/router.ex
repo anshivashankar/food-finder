@@ -17,16 +17,17 @@ defmodule FoodFinderWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/register", PageController, :register
+    get "/profile", PageController, :profile
+    
   end
 
   # Other scopes may use custom stacks.
-  scope "/api", FoodFinderWeb do
+  scope "/api/v1", FoodFinderWeb do
      pipe_through :api
 
      resources "/sessions", SessionController, only: [:create]
      resources "/users", UserController
-
-     resources "/ratings", RatingController
 
    end
 end
