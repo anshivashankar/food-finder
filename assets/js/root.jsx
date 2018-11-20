@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 import store from './store';
 import api from './api';
 import Register from './register';
-
-
+import MainPage from './main-page';
+//import Profile from './profile';
 
 export default function root_init(node) {
     let prods = window.tasks;
@@ -42,7 +42,7 @@ class Root extends React.Component {
         return <div>
         <NoSession />
     </div>   
-    }
+        }
     }
 }
 
@@ -51,7 +51,7 @@ function MainPages(props) {
     <Router>
         <div>
             <Route path="/main-page" exact={true} render={() =>
-                <MainPage />
+               <div> <MainPage /> </div>
             } />    
             <Route path="/profile" exact={true} render={() =>
                 <Profile />}/>    

@@ -40,7 +40,7 @@ class TheServer {
             type: 'NEW_USER',
             data: resp.data,
          });
-         this.create_session()
+         this.create_session();
         }
       });
   }
@@ -61,6 +61,7 @@ class TheServer {
           type: 'NEW_SESSION',
           data: resp.data,
         });
+        window.location.href = '/main-page';
       }
     });
   }

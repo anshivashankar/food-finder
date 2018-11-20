@@ -11,15 +11,14 @@ class MainPage extends React.Component {
     constructor(props) {
       super(props);
     }
+    
 
-
-render() {
-return <div>
-            <div class="container">
+    render() {
+        console.log("it's rendering!");
+        return <div>
                 <h1> This is where the magic happens </h1>
             </div>
-        </div>
-        }
+            }
     }
 
 function state2props(state) {
