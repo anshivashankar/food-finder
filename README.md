@@ -37,6 +37,12 @@ $ mix ecto.create
 $ mix ecto.migrate
 ```
 
+### Starting Geolocated
+
+To install the React Geolocated:
+
+* `(cd assets && npm install react-geolocated --save`)
+
 ### Starting Phoenix
 
 To start your Phoenix server:

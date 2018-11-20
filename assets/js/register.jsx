@@ -43,7 +43,11 @@ return <div>
         </div>
         <button type="submit" onClick={(e) => { e.preventDefault(); api.create_user()}} class="btn btn-primary">Register</button>
     </form>
-</div>
+    
+    </div>
+    <div class="container">
+        <p> Want to go back? <a href="../"> Click here! </a> </p>
+    </div>
 </div>
 } 
 }

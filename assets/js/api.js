@@ -73,8 +73,8 @@ class TheServer {
         type:'LOGOUT_OF_SESSION',
         data: null,
     })
-
     localStorage.removeItem('token');
+    window.location.href = '/';
   }
 
   fetch_restaurants(location) {
