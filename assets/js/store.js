@@ -6,7 +6,9 @@ function session(state0 = null, action) {
     case 'NEW_SESSION':
       return action.data;
     case 'LOGOUT_OF_SESSION':
-      return action.data;
+      console.log("in store");
+      state0 = null;
+      return state0;
     default:
       return state0;
     }

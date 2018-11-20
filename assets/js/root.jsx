@@ -10,6 +10,7 @@ import store from './store';
 import api from './api';
 import Register from './register';
 import MainPage from './main-page';
+import Header from './header';
 //import Profile from './profile';
 
 export default function root_init(node) {
@@ -37,11 +38,13 @@ class Root extends React.Component {
 
     if (token) {
        return <div >
+       <Header />    
         <MainPages />
        </div> 
     }
     else {
         return <div>
+        <Header />    
         <NoSession />
     </div>   
         }
@@ -63,6 +66,7 @@ function MainPages(props) {
 }
 
 function NoSession(props) {
+     console.log("nosession");
     return <div>
             <Router>
                 <div>
@@ -98,8 +102,9 @@ function Login(props) {
             <label for="loginPassword">Password</label>
             <input type="password" class="form-control" id="loginPassword" placeholder="Password"/>
         </div>
-        <button type="submit" onClick={(e) => { e.preventDefault(); api.create_session()}} class="btn btn-primary">Log in</button>
+        <button onClick={(e) => { e.preventDefault(); api.create_session()}} class="btn btn-primary">Log in</button>
     </form>
+
 </div>
 <div class="container">
     <p> Not registered yet? <a href="/register"> Sign up here </a> </p>

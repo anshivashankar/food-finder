@@ -55,24 +55,26 @@ class TheServer {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify({name, email, password}),
+      data: JSON.stringify({email, password}),
       success: (resp) => {
         store.dispatch({
           type: 'NEW_SESSION',
           data: resp.data,
         });
         localStorage.setItem('token', resp.data.token);
-        window.location.href = '/main-page';
+        location.reload();
       }
     });
   }
 
-  endSession() {
-    let action = {
-      type: "LOGOUT_OF_SESSION",
-      data: null
-    }
-    store.dispatch(action);
+  logout_user() {
+    console.log("logout");
+    store.dispatch({
+        type:'LOGOUT_OF_SESSION',
+        data: null,
+    })
+
+    localStorage.removeItem('token');
 }
 }
 
