@@ -34,7 +34,7 @@ class MainPage extends React.Component {
     }
 
     getRestaurants() {
-      api.fetch_restaurants(this.state.location);
+      console.log(api.fetch_restaurants(this.state.location));
     }
     
     render() {
