@@ -7,24 +7,26 @@ defmodule FoodFinderWeb.LocationController do
   action_fallback FoodFinderWeb.FallbackController
 
   alias FoodFinder.Users.User
-  def create(conn, %{"location" => location}) do
-    #location = %{lat: 42.339806,
-    #             long: -71.089172}
+  def create(conn, %{"lat" => lat, "long" => long}) do
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
     <> "location="
-    <> to_string(location["lat"]) <> ","
-    <> to_string(location["long"]) <> "&"
+    <> to_string(lat) <> ","
+    <> to_string(long) <> "&"
     <> "radius=5000&"
     <> "type=restaurant&"
-    <> "key=" <> System.get_env("GOOGLE_API_KEY")
+    <> "key=" 
+    <> System.get_env("GOOGLE_API_KEY")
 
-    IO.inspect(url)
+    #IO.inspect(url)
 
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        IO.inspect(Jason.decode!(body))
+        newbody = Jason.decode!(body)
+        results = newbody["results"]
         conn
         |> put_resp_header("content-type", "application/json; charset=utf-8")
-        |> send_resp(:created, Jason.encode!(%{data: body}))
+        |> send_resp(:created, Jason.encode!(%{data: results}))
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         IO.puts "Not found :("
       {:error, %HTTPoison.Error{reason: reason}} ->

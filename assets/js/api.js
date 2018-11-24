@@ -78,20 +78,19 @@ class TheServer {
   }
 
   fetch_restaurants(location) {
-    //PROBLEMATIC: LOCATION CONTROLLER WANTS 1 INPUT,
-    // CURRENTLY ITS READING AS TWO (LAT => 0, LONG => 0);
     let lat = location.lat;
-    let lo = location.long;
-    let loc = {lat, lo};
-
+    let long = location.long;
+    let loc = {lat, long};
     $.ajax("/api/v1/location", {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify(loc),
       success: (resp) => {
-        console.log(resp);
-        // TODO response here
+        store.dispatch({
+          type: 'RESTAURANT_LIST',
+          data: resp.data,
+        });
       }
     });
   }
