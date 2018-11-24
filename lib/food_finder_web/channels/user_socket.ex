@@ -3,6 +3,7 @@ defmodule FoodFinderWeb.UserSocket do
 
   ## Channels
   # channel "room:*", FoodFinderWeb.RoomChannel
+  channel "chat:lobby", FoodFinderWeb.ChatChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
