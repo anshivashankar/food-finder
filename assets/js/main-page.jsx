@@ -7,6 +7,7 @@ import {geolocated} from 'react-geolocated';
 
 import api from './api';
 import store from './store';
+import RestaurantList from './food-list';
 
 
 class MainPage extends React.Component {
@@ -18,7 +19,6 @@ class MainPage extends React.Component {
         restaurants: {},
       }
       this.getUserLoc();
-      console.log(this.getRestaurants());
     }
 
     onPositionRecieved(position) {
@@ -27,6 +27,7 @@ class MainPage extends React.Component {
       this.setState({
         location: {lat: latNew, long: longNew}
       });
+      this.getRestaurants();
     }
 
     getUserLoc() {
@@ -45,6 +46,7 @@ class MainPage extends React.Component {
                 <h1> This is where the magic happens </h1>
                 {this.state.location.lat}
                 {this.state.location.long}
+                <RestaurantList />
             </div>
             }
     }

@@ -22,10 +22,19 @@ function session(state0 = null, action) {
     }
   }
 
+  function restaurants(state0 = [], action) {
+    switch(action.type) {
+      case 'RESTAURANT_LIST':
+        return action.data;
+      default:
+        return state0;
+    }
+  }
+
 function root_reducer(state0, action) {
     //console.log("reducer", state0, action);
   
-    let reducer = combineReducers({session, users});
+    let reducer = combineReducers({session, users, restaurants});
     let state1 = reducer(state0, action);
   
     //console.log("state1", state1);

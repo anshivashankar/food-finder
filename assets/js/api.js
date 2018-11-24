@@ -81,9 +81,9 @@ class TheServer {
     //PROBLEMATIC: LOCATION CONTROLLER WANTS 1 INPUT,
     // CURRENTLY ITS READING AS TWO (LAT => 0, LONG => 0);
     let lat = location.lat;
-    let lo = location.long;
-    let loc = {lat, lo};
-
+    let long = location.long;
+    let loc = {lat, long};
+    console.log(loc);
     $.ajax("/api/v1/location", {
       method: "post",
       dataType: "json",
@@ -91,6 +91,10 @@ class TheServer {
       data: JSON.stringify(loc),
       success: (resp) => {
         console.log(resp);
+        store.dispatch({
+          type: 'RESTAURANT_LIST',
+          data: resp.data,
+        });
         // TODO response here
       }
     });
