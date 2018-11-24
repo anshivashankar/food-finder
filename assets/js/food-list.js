@@ -6,7 +6,6 @@ import _ from 'lodash';
 var location;
 
 export default connect(({restaurants, location}) => ({restaurants, location}))((props) => {
-  console.log(props);
   let restaurants = props.restaurants;
   location = props.location;
   let restaurant_list = _.map(restaurants, (r) => <Restaurant key={r.id} restaurant={r} />);
@@ -31,7 +30,6 @@ function Restaurant(props) {
   let {restaurant} = props;
   let R = 6371;
   let resLocation = restaurant["geometry"]["location"];
-  console.log(location["lat"]);
   let d = getDistance(resLocation["lat"], location["lat"], resLocation["lng"], location["long"]);
   return <tr>
     <td> {restaurant["name"]} </td>

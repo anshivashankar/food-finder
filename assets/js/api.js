@@ -81,14 +81,12 @@ class TheServer {
     let lat = location.lat;
     let long = location.long;
     let loc = {lat, long};
-    console.log(loc);
     $.ajax("/api/v1/location", {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify(loc),
       success: (resp) => {
-        console.log(resp);
         store.dispatch({
           type: 'RESTAURANT_LIST',
           data: resp.data,
