@@ -78,8 +78,6 @@ class TheServer {
   }
 
   fetch_restaurants(location) {
-    //PROBLEMATIC: LOCATION CONTROLLER WANTS 1 INPUT,
-    // CURRENTLY ITS READING AS TWO (LAT => 0, LONG => 0);
     let lat = location.lat;
     let long = location.long;
     let loc = {lat, long};
@@ -95,7 +93,6 @@ class TheServer {
           type: 'RESTAURANT_LIST',
           data: resp.data,
         });
-        // TODO response here
       }
     });
   }

@@ -24,6 +24,10 @@ class MainPage extends React.Component {
     onPositionRecieved(position) {
       let latNew = position.coords.latitude;
       let longNew = position.coords.longitude;
+      store.dispatch({
+        type: 'NEW_LOCATION',
+        data: {lat: latNew, long: longNew},
+      });
       this.setState({
         location: {lat: latNew, long: longNew}
       });
@@ -35,6 +39,7 @@ class MainPage extends React.Component {
     }
 
     getRestaurants() {
+      
       api.fetch_restaurants(this.state.location);
     }
     

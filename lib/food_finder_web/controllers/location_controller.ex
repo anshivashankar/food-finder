@@ -8,12 +8,6 @@ defmodule FoodFinderWeb.LocationController do
 
   alias FoodFinder.Users.User
   def create(conn, %{"lat" => lat, "long" => long}) do
-    #IO.inspect(lat)
-    #IO.inspect(long)
-    #IO.inspect(System.get_env("GOOGLE_API_KEY2"))
-
-    #location = %{lat: 42.339806,
-    #             long: -71.089172}
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
     <> "location="
     <> to_string(lat) <> ","
@@ -23,7 +17,7 @@ defmodule FoodFinderWeb.LocationController do
     <> "key=" 
     <> System.get_env("GOOGLE_API_KEY")
 
-    IO.inspect(url)
+    #IO.inspect(url)
 
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
