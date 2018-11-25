@@ -13,7 +13,10 @@ defmodule FoodFinder.Chats do
   end
 
   def client_view(lobby) do
-    lobby
+    %{
+      messages: lobby.messages
+      |> Enum.map(fn x -> Map.put(x, :sendername, Repo.get(FoodFinder.Users.User, x[:sender]).name) end)
+    }
   end
 
   def send_message(payload) do

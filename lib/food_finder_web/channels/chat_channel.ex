@@ -6,7 +6,10 @@ defmodule FoodFinderWeb.ChatChannel do
 
   def join("chat:"  <> name, payload, socket) do
     if authorized?(payload) do
-      lobby = Chats.new()
+      ids = String.split(name, "+")
+      |> Enum.map(fn id -> Integer.parse(id) end)
+      |> IO.inspect
+      lobby = Chats.get_messages(elem(Enum.at(ids, 0), 0), elem(Enum.at(ids, 1), 0))
       socket = socket
       |> assign(:chat, lobby)
       |> assign(:name, name)
@@ -28,7 +31,7 @@ defmodule FoodFinderWeb.ChatChannel do
     Chats.send_message(payload)
     chats = Chats.get_messages(payload["sender"], payload["receiver"])
     socket = assign(socket, :chat, chats)
-    broadcast socket, "new_view", chats
+    broadcast socket, "new_view", Chats.client_view(chats)
     #{:reply, {:ok, %{ "chat" => Chats.client_view(chats)}}, socket}
     {:noreply, socket}
   end

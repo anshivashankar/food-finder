@@ -8,6 +8,11 @@ import api from './api';
 import store from './store';
 import socket from './socket';
 
+
+// stored like:
+// %{user_id_1:user_name_1, user_id_2:user_name_2}
+var chatting_users;
+
 class Chat extends React.Component {
   // inspired by: http://www.ccs.neu.edu/home/ntuck/courses/2018/09/cs4550/notes/06-channels/notes.html
     constructor(props) {
@@ -41,9 +46,14 @@ class Chat extends React.Component {
           sender: user_id,
           receiver: receiver_id,
           comment: message});
-        //.receive("ok", this.gotView.bind(this));
 
       $("#commentbox").val("");
+    }
+
+    get_username(user_id) {
+      return new Promise(resolve => {
+        api.get_username(user_id);
+      });
     }
 
     render() {
@@ -84,6 +94,7 @@ function state2props(state) {
 
 function Message(props) {
   let {message} = props;
-
-  return <li> {message.comment} </li>;
+  let messageWithName =  "" + message.sendername  + ": " + message.comment;
+  return <li> {messageWithName} </li>;
 }
+

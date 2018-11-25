@@ -25,6 +25,14 @@ class TheServer {
     );
     }
 
+  get_username(id) {
+    this.fetch_path(
+      "/api/v1/users/" + id,
+      (resp) => {
+        return resp.data.name;
+      });
+  }
+
   create_user() {
     let name = $('#registerName').val()
     let email = $('#registerEmail').val()
