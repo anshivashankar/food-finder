@@ -28,7 +28,7 @@ function Restaurant(props) {
     openSign = "Open Now";
   }
   else if(open == null) {
-    openSign = "No Info";
+    openSign = " ";
   }
   else {
     openSign = "Closed";
@@ -41,7 +41,7 @@ function Restaurant(props) {
         <p class="card-text">Price Range: {restaurant["price_level"]}</p>
         <p class="card-text">Place Holder Rating: {restaurant["rating"]}</p>
         <p class="card-text">Address: {restaurant["vicinity"]}</p>
-        <p class="card-text">Open?: {openSign}</p>
+        <p class="card-text">{openSign} </p>
         <a href="#" class="btn btn-light">See More</a>
       </div>
     </div>
