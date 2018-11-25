@@ -25,6 +25,14 @@ class TheServer {
     );
     }
 
+  get_username(id) {
+    this.fetch_path(
+      "/api/v1/users/" + id,
+      (resp) => {
+        return resp.data.name;
+      });
+  }
+
   create_user() {
     let name = $('#registerName').val();
     let email = $('#registerEmail').val();
@@ -78,6 +86,8 @@ class TheServer {
           data: resp.data,
         });
         localStorage.setItem('token', resp.data.token);
+        localStorage.setItem('user_id', resp.data.user_id);
+        localStorage.setItem('user_name', resp.data.user_name);
         location.reload();
       }
     });
