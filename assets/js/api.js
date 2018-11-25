@@ -30,12 +30,6 @@ class TheServer {
     let email = $('#registerEmail').val();
     let pass = $('#registerPassword').val();
     
-    
-    console.log(name);
-    console.log(email);
-    console.log(pass);
-    console.log({user: {name, email, pass}});
-    
     let newuser = {name: name, email: email, password_hash: pass};
 
     $.ajax("/api/v1/users", {
@@ -44,12 +38,26 @@ class TheServer {
         contentType: "application/json; charset=UTF-8",
         data: JSON.stringify({user: newuser}),
         success: (resp) => {
-          console.log("success");
           store.dispatch({
             type: 'NEW_USER',
             data: resp.data,
          });
          //this.create_session();
+        }
+      });
+  }
+
+  delete_user(id) {
+    $.ajax("/api/v1/users" + id, {
+        method: "delete",
+        dataType: "json",
+        contentType: "application/json; charset=UTF-8",
+        data:"",
+        success: (resp) => {
+          console.log("user deleted");
+          store.dispatch({
+            type: 'DELETE_USER',
+         });
         }
       });
   }
@@ -76,7 +84,6 @@ class TheServer {
   }
 
   logout_user() {
-    console.log("logout");
     store.dispatch({
         type:'LOGOUT_OF_SESSION',
         data: null,

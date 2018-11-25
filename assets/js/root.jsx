@@ -14,7 +14,6 @@ import Header from './header';
 import Profile from './profile';
 
 export default function root_init(node) {
-    let prods = window.tasks;
     let ConnectedRoot = connect(state2props)(Root)
   
     ReactDOM.render(
@@ -26,13 +25,10 @@ export default function root_init(node) {
 class Root extends React.Component {
     constructor(props) {
       super(props);
-  
-    //   api.create_session("bob@example.com", "pass1");
-    //   api.fetch_users();
     }
   
     render() {
-    let {session, users} = this.props;
+    console.log(this.props.session)
     const token = localStorage.getItem('token'); // currently null
     console.log(token);
 

@@ -23,7 +23,6 @@ function Restaurant(props) {
 
   let open = _.get(restaurant["opening_hours"], 'open_now');
   let openSign;
-  console.log(open);
   if(open) {
     openSign = "Open Now";
   }

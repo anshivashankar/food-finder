@@ -13,7 +13,6 @@ class Profile extends React.Component {
     }
 
     render() {
-        console.log("it's rendering!");
         return <div>
           
             <div class="container">
@@ -25,6 +24,10 @@ class Profile extends React.Component {
                     </div>
                     <div class="col-sm">
                     </div>
+                </div>
+
+                <div class="row">
+                <button type="submit" onClick={api.delete_user()} class="btn btn-primary">Delete Account</button>
                 </div>
             </div>
           </div>

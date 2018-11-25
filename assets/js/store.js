@@ -6,7 +6,6 @@ function session(state0 = null, action) {
     case 'NEW_SESSION':
       return action.data;
     case 'LOGOUT_OF_SESSION':
-      console.log("in store");
       state0 = null;
       return state0;
     default:
@@ -18,8 +17,10 @@ function session(state0 = null, action) {
     case 'USER_LIST':
       return action.data;
     case 'NEW_USER':
-      console.log("in store");
       return action.data;  
+    case 'DELETE_USER':
+      state0 = null;
+      return state0;
     default:
       return state0;
     }
