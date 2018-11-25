@@ -20,14 +20,16 @@ defmodule FoodFinder.Chats do
     Chat.changeset(%Chat{}, payload) |> Repo.insert
   end
 
-  def get_messages() do
-    messages = Repo.all(Chat)
+  def get_messages(sender, receiver) do
+    query = from c in Chat,
+    where: c.sender == ^sender and c.receiver == ^receiver or c.receiver == ^sender and c.sender == ^receiver
+
+    messages = Repo.all(query)
     |> Enum.map(fn x -> Map.drop(Map.from_struct(x), [:__meta__]) end)
     %{
       messages: messages
     }
     |> IO.inspect
-    # we need to filter it here first though.
   end
 end
 

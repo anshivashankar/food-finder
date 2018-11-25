@@ -26,11 +26,11 @@ defmodule FoodFinderWeb.ChatChannel do
   # broadcast to everyone in the current topic (chat:lobby).
   def handle_in("message", payload, socket) do
     Chats.send_message(payload)
-    chats = Chats.get_messages()
+    chats = Chats.get_messages(payload["sender"], payload["receiver"])
     socket = assign(socket, :chat, chats)
-    {:reply, {:ok, %{ "chat" => Chats.client_view(chats)}}, socket}
-    #broadcast socket, "message", payload
-    #{:noreply, socket}
+    broadcast socket, "new_view", chats
+    #{:reply, {:ok, %{ "chat" => Chats.client_view(chats)}}, socket}
+    {:noreply, socket}
   end
 
   # Add authorization logic here as required.

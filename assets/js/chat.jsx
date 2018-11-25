@@ -30,12 +30,19 @@ class Chat extends React.Component {
     }
 
     sendMessage(message) {
+      let user_id = localStorage.getItem('user_id');
+      let ids = window.location.pathname.split("/")[2].split("+");
+      let receiver_id = ids[0];
+      if(ids[0] == user_id) {
+        receiver_id = ids[1];
+      }
       
       this.channel.push("message", {
-          sender: 1,
-          receiver: 0,
-          comment: message})
-        .receive("ok", this.gotView.bind(this));
+          sender: user_id,
+          receiver: receiver_id,
+          comment: message});
+        //.receive("ok", this.gotView.bind(this));
+
       $("#commentbox").val("");
     }
 
