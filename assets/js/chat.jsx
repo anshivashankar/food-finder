@@ -13,17 +13,30 @@ class Chat extends React.Component {
     constructor(props) {
       super(props);
       let chatname = window.location.pathname.split("/")[2];
-      let channel = socket.channel("chat:" + chatname, {});
+      this.channel = socket.channel("chat:" + chatname, {});
       this.state = { messages: [] };
-      channel.join()
+      this.channel.join()
       .receive("ok", this.gotView.bind(this))
       .receive("error", resp => { console.log("Unable to join", resp) });
+      this.channel.on("new_view", state => {
+        this.setState(state);
+      });
     }
 
     gotView(view) {
       console.log("new view", view.chat);
       this.setState(view.chat);
       this.forceUpdate();
+    }
+
+    sendMessage(message) {
+      
+      this.channel.push("message", {
+          sender: 1,
+          receiver: 0,
+          comment: message})
+        .receive("ok", this.gotView.bind(this));
+      $("#commentbox").val("");
     }
 
     render() {
@@ -44,7 +57,9 @@ class Chat extends React.Component {
                     </div>
                 </div>
                 <input type="text" name="commentbox" id="commentbox"/>
-                <
+                <p onClick={() => this.sendMessage(
+                                       $("#commentbox").val())}
+                                       className="btn btn-primary">Send</p>
             </div>
           </div>
     }

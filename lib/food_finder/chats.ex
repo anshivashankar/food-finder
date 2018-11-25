@@ -9,12 +9,11 @@ defmodule FoodFinder.Chats do
     %{
       messages: [sampleMessage, sampleMessage]
     }
+    |> IO.inspect
   end
 
   def client_view(lobby) do
-    %{
-      messages: lobby.messages
-    }
+    lobby
   end
 
   def send_message(payload) do
@@ -22,7 +21,13 @@ defmodule FoodFinder.Chats do
   end
 
   def get_messages() do
-    Repo.all(Chat) # we need to filter it here first though.
+    messages = Repo.all(Chat)
+    |> Enum.map(fn x -> Map.drop(Map.from_struct(x), [:__meta__]) end)
+    %{
+      messages: messages
+    }
+    |> IO.inspect
+    # we need to filter it here first though.
   end
 end
 
