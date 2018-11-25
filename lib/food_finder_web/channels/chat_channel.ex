@@ -1,9 +1,9 @@
 defmodule FoodFinderWeb.ChatChannel do
   use FoodFinderWeb, :channel
 
-  def join("chat:lobby", payload, socket) do
+  def join("chat:"  <> name, payload, socket) do
     if authorized?(payload) do
-      {:ok, socket}
+      {:ok, %{"join" => name}, socket}
     else
       {:error, %{reason: "unauthorized"}}
     end
@@ -17,8 +17,8 @@ defmodule FoodFinderWeb.ChatChannel do
 
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (chat:lobby).
-  def handle_in("shout", payload, socket) do
-    broadcast socket, "shout", payload
+  def handle_in("message", payload, socket) do
+    broadcast socket, "message", payload
     {:noreply, socket}
   end
 

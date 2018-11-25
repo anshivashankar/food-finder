@@ -12,6 +12,7 @@ import Register from './register';
 import MainPage from './main-page';
 import Header from './header';
 import Profile from './profile';
+import Chat from './chat';
 
 export default function root_init(node) {
     let prods = window.tasks;
@@ -60,6 +61,8 @@ function MainPages(props) {
             } />    
             <Route path="/profile" exact={true} render={() =>
                 <Profile />}/>    
+            <Route path="/chat/:chatname" render={() =>
+                <Chat />}/>
         </div> 
     </Router>
 </div>  
