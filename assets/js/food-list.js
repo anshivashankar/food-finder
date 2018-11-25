@@ -41,6 +41,7 @@ function Restaurant(props) {
         <p class="card-text">Place Holder Rating: {restaurant["rating"]}</p>
         <p class="card-text">Address: {restaurant["vicinity"]}</p>
         <p class="card-text">{openSign} </p>
+        <p class="card-text"> Miles Away: {d} </p>
         <a href="#" class="btn btn-light">See More</a>
       </div>
     </div>
