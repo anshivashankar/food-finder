@@ -36,6 +36,8 @@ class Root extends React.Component {
     let {session, users} = this.props;
     const token = localStorage.getItem('token'); // currently null
     console.log(token);
+    console.log(localStorage.getItem('user_id'));
+    console.log(localStorage.getItem('user_name'));
 
     if (token) {
        return <div >
