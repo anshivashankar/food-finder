@@ -62,7 +62,7 @@ function getDistance(lat1, lat2, long1, long2) {
     Math.sin(dLong/2) * Math.sin(dLong/2);
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   let d = R * c; // Distance in km
-  return d * 0.62137119;
+  return parseFloat((d * 0.62137119).toFixed(2));
 }
 
 function deg2rad(deg) {
