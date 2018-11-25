@@ -30,6 +30,8 @@ defmodule FoodFinderWeb.Router do
 
      resources "/sessions", SessionController, only: [:create]
      resources "/users", UserController
+     resources "/ratings", UserController
+
 
    end
 end

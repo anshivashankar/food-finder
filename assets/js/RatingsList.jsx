@@ -48,11 +48,10 @@ class Rating extends React.Component {
       <div className="card col-4">
         <div className="card-body">
           <div className="form-group">
-            <input
-              type="text"
-              className="card-title"
-              value={this.state.comment_text}
-            />
+            <p> A Review! </p>
+            <h5 class="card-title">{this.state.restaurant_id}</h5>
+            <h5 class="card-text">{this.state.comment_text}</h5>
+            <p> Rating: {this.state.rating_number}</p>
           </div>
         </div>
       </div>
