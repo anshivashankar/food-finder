@@ -47,13 +47,24 @@ class MainPage extends React.Component {
       if (!navigator.geolocation){
         return <p>Geolocation is not supported by your browser</p>;
       }
-        return <div>
-                <h1> This is where the magic happens </h1>
-                {this.state.location.lat}
-                {this.state.location.long}
-                <RestaurantList />
-            </div>
-            }
+        return <div class="container">
+        <div class="row">
+          <div class="col-sm">
+          </div>
+          <div class="col-sm">
+            <h1>Welcome to Food Finder!</h1>
+          </div>
+          <div class="col-sm">
+          </div>
+        </div>
+
+        <div class="row">
+          {this.state.location.lat}
+          {this.state.location.long}
+          <RestaurantList />
+        </div>
+      </div>; 
+        }
     }
 
 function state2props(state) {

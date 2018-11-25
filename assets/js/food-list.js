@@ -10,19 +10,8 @@ export default connect(({restaurants, location}) => ({restaurants, location}))((
   location = props.location;
   let restaurant_list = _.map(restaurants, (r) => <Restaurant key={r.id} restaurant={r} />);
    
-  return <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Restaurant Name</th>
-                <th>Price Level</th>
-                <th>Distance (Miles)</th>
-              </tr>
-            </thead>
-          <tbody>
-            {restaurant_list}
-          </tbody>
-        </table>
+  return <div class="row">
+        {restaurant_list}
       </div>;
 });
 
@@ -31,11 +20,32 @@ function Restaurant(props) {
   let R = 6371;
   let resLocation = restaurant["geometry"]["location"];
   let d = getDistance(resLocation["lat"], location["lat"], resLocation["lng"], location["long"]);
-  return <tr>
-    <td> {restaurant["name"]} </td>
-    <td> {restaurant["price_level"]} </td>
-    <td> {d} </td>
-  </tr>;
+
+  let open = _.get(restaurant["opening_hours"], 'open_now');
+  let openSign;
+  console.log(open);
+  if(open) {
+    openSign = "Open Now";
+  }
+  else if(open == null) {
+    openSign = "No Info";
+  }
+  else {
+    openSign = "Closed";
+  }
+
+  return <div class="col-sm-6 mb-3">
+    <div class="card text-white bg-dark mb-3">
+    <h5 class="card-header">{restaurant["name"]}</h5>
+      <div class="card-body">
+        <p class="card-text">Price Range: {restaurant["price_level"]}</p>
+        <p class="card-text">Place Holder Rating: {restaurant["rating"]}</p>
+        <p class="card-text">Address: {restaurant["vicinity"]}</p>
+        <p class="card-text">Open?: {openSign}</p>
+        <a href="#" class="btn btn-light">See More</a>
+      </div>
+    </div>
+  </div>;
 }
 
 
