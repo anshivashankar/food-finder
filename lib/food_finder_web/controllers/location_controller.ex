@@ -14,7 +14,7 @@ defmodule FoodFinderWeb.LocationController do
     <> to_string(long) <> "&"
     <> "radius=5000&"
     <> "type=restaurant&"
-    <> "key=AIzaSyA8lySjDjHR1VVN2OT3fOB9w-NMS-MudjQ" 
+    <> "key=" 
     <> System.get_env("GOOGLE_API_KEY")
 
     #IO.inspect(url)
