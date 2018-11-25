@@ -22,6 +22,7 @@ class MainPage extends React.Component {
     }
 
     onPositionRecieved(position) {
+      console.log("position");
       let latNew = position.coords.latitude;
       let longNew = position.coords.longitude;
       store.dispatch({
@@ -35,11 +36,12 @@ class MainPage extends React.Component {
     }
 
     getUserLoc() {
-      navigator.geolocation.getCurrentPosition(this.onPositionRecieved.bind(this))
+      navigator.geolocation.getCurrentPosition(this.onPositionRecieved.bind(this));
+
+      navigator.geolocation.watchPosition(this.onPositionRecieved.bind(this));
     }
 
     getRestaurants() {
-      
       api.fetch_restaurants(this.state.location);
     }
     
