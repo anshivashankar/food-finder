@@ -61,9 +61,10 @@ defmodule FoodFinder.Users do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs \\ %{}) do
+  def create_user(%{"name" => name, "email" => email, "password_hash" => password}) do
+    pass = Argon2.hash_pwd_salt(password)
     %User{}
-    |> User.changeset(attrs)
+    |> User.changeset(%{"name" => name, "email" => email, "password_hash" => pass})
     |> Repo.insert()
   end
 

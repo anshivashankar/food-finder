@@ -17,6 +17,9 @@ function session(state0 = null, action) {
     switch (action.type) {
     case 'USER_LIST':
       return action.data;
+    case 'NEW_USER':
+      console.log("in store");
+      return action.data;  
     default:
       return state0;
     }

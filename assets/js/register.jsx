@@ -27,8 +27,8 @@ return <div>
 <div class="container login-form">
     <form>
         <div class="form-group">
-            <label> Name </label>
-            <input type="text" class="form-control" placeholder="Enter name"/>
+            <label for="registerName"> Name </label>
+            <input type="text" class="form-control" id="registerName" placeholder="Enter name"/>
         </div>
     
         <div class="form-group">

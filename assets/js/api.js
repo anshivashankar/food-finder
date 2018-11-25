@@ -26,21 +26,30 @@ class TheServer {
     }
 
   create_user() {
-    let name = $('#registerName').val()
-    let email = $('#registerEmail').val()
-    let password = $('#registerPassword').val()
+    let name = $('#registerName').val();
+    let email = $('#registerEmail').val();
+    let pass = $('#registerPassword').val();
+    
+    
+    console.log(name);
+    console.log(email);
+    console.log(pass);
+    console.log({user: {name, email, pass}});
+    
+    let newuser = {name: name, email: email, password_hash: pass};
 
     $.ajax("/api/v1/users", {
         method: "post",
         dataType: "json",
         contentType: "application/json; charset=UTF-8",
-        data: JSON.stringify({user: {name, email, password}}),
+        data: JSON.stringify({user: newuser}),
         success: (resp) => {
+          console.log("success");
           store.dispatch({
             type: 'NEW_USER',
             data: resp.data,
          });
-         this.create_session();
+         //this.create_session();
         }
       });
   }
@@ -49,7 +58,6 @@ class TheServer {
     let name = $('#loginName').val()
     let email = $('#loginEmail').val()
     let password = $('#loginPassword').val()
-
 
     $.ajax("/api/v1/sessions", {
       method: "post",
