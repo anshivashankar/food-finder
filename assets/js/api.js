@@ -31,7 +31,6 @@ class TheServer {
     let name = $("#registerName").val();
     let email = $("#registerEmail").val();
     let pass = $("#registerPassword").val();
-
     let newuser = { name: name, email: email, password_hash: pass };
 
     $.ajax("/api/v1/users", {
@@ -40,16 +39,10 @@ class TheServer {
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify({ user: newuser }),
       success: resp => {
-        store.dispatch({
-          type: "NEW_SESSION",
-          data: resp.data
-        });
+        // Now that we've got a user, authenticate.
+        this.create_session(email, pass);
         console.log(resp.data);
-
-        localStorage.setItem("token", resp.data.token);
-        localStorage.setItem("user_id", resp.data.user_id);
-        localStorage.setItem("user_name", resp.data.user_name); 
-        window.location = "../";
+        //window.location = "../";
       }
     });
   }
@@ -96,12 +89,34 @@ class TheServer {
     });
   }
 
+  create_session(email, password) {
+    $.ajax("/api/v1/sessions", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ email, password }),
+      success: resp => {
+        store.dispatch({
+          type: "NEW_SESSION",
+          data: resp.data
+        });
+        localStorage.setItem("token", resp.data.token);
+        localStorage.setItem("user_id", resp.data.user_id);
+        localStorage.setItem("user_name", resp.data.user_name);
+        window.location="../"
+      }
+    });
+  }
+
   logout_user() {
     store.dispatch({
       type: "LOGOUT_OF_SESSION",
       data: null
     });
     localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("user_name");
+
     window.location = "../";
   }
 
