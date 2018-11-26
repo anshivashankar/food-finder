@@ -21,8 +21,8 @@ defmodule FoodFinderWeb.FriendController do
   end
 
   def show(conn, %{"id" => id}) do
-    friend = Friends.get_all_friends_of(id)
-    render(conn, "show.json", friend: friend)
+    friends = Friends.get_all_friends_of(id)
+    render(conn, "friends.json", friends: friends)
   end
 
   def delete(conn, %{"id" => id, "friend_id" => id2}) do
