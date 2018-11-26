@@ -69,9 +69,10 @@ class Chat extends React.Component {
       };
       let messages_list = _.map(messages, (m) => <Message key={m.id}  message={m} />);
         return <div>
-            <div class="container">
+            <div className="container">
               <div className="row">
                 <div className="col-lg">
+                  <h1>Chat</h1>
                   {messages_list}
                   <br/>
                   <br/>
