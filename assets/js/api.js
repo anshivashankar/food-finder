@@ -103,7 +103,7 @@ class TheServer {
         localStorage.setItem("token", resp.data.token);
         localStorage.setItem("user_id", resp.data.user_id);
         localStorage.setItem("user_name", resp.data.user_name);
-        window.location="../"
+        window.location="../";
       }
     });
   }
@@ -146,6 +146,29 @@ class TheServer {
       }
     });
   }
+
+  create_review() {
+  let restID = localStorage.getItem('restaurant_id');
+  let userID = localStorage.getItem('user_id');
+  let restname = localStorage.getItem('restaurant_name');
+  let comment = $('#reviewDesc').val();
+  let rating = $('#reviewNumber').val();
+
+  let newReview = {name: restname, comment_text: comment, rating_number: rating, restaurant_id: restID, user_id: userID};
+
+  console.log(newReview);
+  console.log("create_review");
+
+  $.ajax("/api/v1/ratings", {
+    method: "post",
+    dataType: "json",
+    contentType: "application/json; charset=UTF-8",
+    data: JSON.stringify({ratings: newReview}),
+    success: resp => {
+      this.fetch_ratings();
+    }
+  });
+  }  
 }
 
 export default new TheServer();

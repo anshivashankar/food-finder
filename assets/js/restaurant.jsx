@@ -44,9 +44,9 @@ class RestaurantProfile extends React.Component {
           <h5>Categories: {rest_types}</h5>
         </div>
 
-        {/* <div class="container">
+        <div class="container">
           <RatingsList />
-        </div> */}
+        </div>
 
         <div className="container">
           <button className="btn btn-primary" type="button" data-toggle="collapse" 
@@ -61,17 +61,18 @@ class RestaurantProfile extends React.Component {
           <h2>Write a Review for</h2>
           <form>
             <div>
-            
               <p>{rest_name}</p>
             </div>
 
             <div>
-              <textarea className="form-control" id="taskDesc" 
+              <textarea className="form-control" id="reviewDesc" 
                         placeholder="Description" aria-label="With textarea"></textarea>
               <p></p>
+              <label>Rating: </label>
+              <input id="reviewNumber" type="number" name="quantity" max="5"></input>
             </div>  
           </form>
-          <button className="btn btn-primary" onClick={() => api.create_task()}>It's your problem now</button>
+          <button className="btn btn-primary" onClick={() => api.create_review()}>Create</button>
         </div>
         <p></p>
       </div>
