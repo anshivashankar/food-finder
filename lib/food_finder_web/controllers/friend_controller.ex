@@ -25,8 +25,10 @@ defmodule FoodFinderWeb.FriendController do
     render(conn, "friends.json", friends: friends)
   end
 
-  def delete(conn, %{"id" => id, "friend_id" => id2}) do
-    friend = Friends.get_friend_relationship(id, id2)
+  def delete(conn, %{"id" => id}) do
+    friend = Friends.get_friend_relationship(id)
+    IO.puts("friend was")
+    IO.inspect(friend)
 
     with {:ok, %Friend{}} <- Friends.delete_friend(friend) do
       send_resp(conn, :no_content, "")

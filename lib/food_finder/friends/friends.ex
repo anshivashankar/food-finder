@@ -38,11 +38,8 @@ defmodule FoodFinder.Friends do
     Repo.all(query)
   end
 
-  def get_friend_relationship(id, id2) do
-    query = from f in Friend,
-        where: (f.primary_user_id == ^id and f.secondary_user_id == ^id2)
-                or (f.primary_user_id == ^id2 and f.secondary_user_id == ^id2)
-    Repo.all(query)
+  def get_friend_relationship(id) do
+    Repo.get!(Friend, id)
   end
   
   @doc """
