@@ -41,10 +41,14 @@ class TheServer {
       data: JSON.stringify({ user: newuser }),
       success: resp => {
         store.dispatch({
-          type: "NEW_USER",
+          type: "NEW_SESSION",
           data: resp.data
         });
-        //this.create_session();
+        window.location = "../";
+        localStorage.setItem("token", resp.data.token);
+        localStorage.setItem("user_id", resp.data.user_id);
+        localStorage.setItem("user_name", resp.data.user_name);
+        
       }
     });
   }
