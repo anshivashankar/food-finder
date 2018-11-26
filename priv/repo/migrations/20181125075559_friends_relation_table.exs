@@ -3,9 +3,11 @@ defmodule FoodFinder.Repo.Migrations.FriendsRelationTable do
 
   def change do
     create table(:friends_with) do
-      add :first_user_id, references(:users), null: false
-      add :second_user_id, references(:users), null: false
       timestamps()
+    end
+    alter table(:friends_with) do
+      add :primary_user_id, references(:users), null: false
+      add :secondary_user_id, references(:users), null: false
     end
   end
 end
