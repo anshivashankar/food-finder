@@ -40,23 +40,21 @@ class TheServer {
       data: JSON.stringify({ user: newuser }),
       success: resp => {
         // Now that we've got a user, authenticate.
-        this.create_session(email, pass);
+        this.create_session_register(email, pass);
         console.log(resp.data);
-        //window.location = "../";
+        window.location = "../";
       }
     });
   }
 
   delete_user() {
     let user_id = localStorage.getItem("user_id");
-    console.log("delete user");
     $.ajax("/api/v1/users/" + user_id, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: "",
       success: resp => {
-        console.log("user deleted");
         store.dispatch({
           type: "DELETE_USER"
         });
@@ -89,7 +87,7 @@ class TheServer {
     });
   }
 
-  create_session(email, password) {
+  create_session_register(email, password) {
     $.ajax("/api/v1/sessions", {
       method: "post",
       dataType: "json",
@@ -126,6 +124,48 @@ class TheServer {
         type: "RATINGS_LIST",
         data: resp.data
       });
+    });
+  }
+
+  fetch_friends(id) {
+    this.fetch_path("/api/v1/friends/" + id, resp => {
+      store.dispatch({
+        type: "FRIENDS_LIST",
+        data: resp.data
+      });
+    });
+  }
+
+  add_friend(user_id, new_friend_id) {
+    $.ajax("/api/v1/friends", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({
+        primary_user_id: user_id,
+        secondary_user_id: new_friend_id
+      }),
+      success: resp => {
+        store.dispatch({
+          type: "ADD_FRIEND",
+          data: resp.data
+        });
+      }
+    });
+  }
+
+  delete_friend(deleted_friend) {
+    $.ajax("/api/v1/friends", {
+      method: "delete",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ deleted_friend }),
+      success: resp => {
+        store.dispatch({
+          type: "DELETE_FRIEND",
+          data: resp.data
+        });
+      }
     });
   }
 
