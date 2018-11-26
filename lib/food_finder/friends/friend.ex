@@ -16,9 +16,9 @@ defmodule FoodFinder.Friends.Friend do
   @doc false
   def changeset(friend, attrs) do
     friend
-    |> foreign_key_constraint(:primary_user_id)
-    |> foreign_key_constraint(:secondary_user_id)
     |> cast(attrs, [:primary_user_id, :secondary_user_id])
+    |> assoc_constraint(:primary_user)
+    |> assoc_constraint(:secondary_user)
     |> validate_required([:primary_user_id, :secondary_user_id])
   end
 end
