@@ -7,6 +7,7 @@ import { Provider, connect } from "react-redux";
 import api from "./api";
 import store from "./store";
 import RatingsList from "./RatingsList";
+import FriendsList from "./FriendsList";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -39,8 +40,21 @@ class Profile extends React.Component {
           <RatingsList />
         </div>
 
+        <div class="container">
+          <p>Here you can view your friends!</p>
+        </div>
+
+        <div class="container">
+          <FriendsList />
+        </div>
+
         <div class="container delete-container">
-          <button class="btn btn-danger delete-button" onClick={api.delete_user}>Delete Account</button>
+          <button
+            class="btn btn-danger delete-button"
+            onClick={api.delete_user}
+          >
+            Delete Account
+          </button>
         </div>
       </div>
     );

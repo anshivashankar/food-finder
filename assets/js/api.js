@@ -48,7 +48,7 @@ class TheServer {
 
         localStorage.setItem("token", resp.data.token);
         localStorage.setItem("user_id", resp.data.user_id);
-        localStorage.setItem("user_name", resp.data.user_name); 
+        localStorage.setItem("user_name", resp.data.user_name);
         window.location = "../";
       }
     });
@@ -111,6 +111,30 @@ class TheServer {
         type: "RATINGS_LIST",
         data: resp.data
       });
+    });
+  }
+
+  // fetch_friends() {
+  //   this.fetch_path("/api/v1/friends/", resp => {
+  //     store.dispatch({
+  //       type: "FRIENDS_LIST",
+  //       data: resp.data
+  //     });
+  //   });
+  // }
+
+  fetch_friends(id) {
+    $.ajax("/api/v1/friends", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ id }),
+      success: resp => {
+        store.dispatch({
+          type: "FRIENDS_LIST",
+          data: resp.data
+        });
+      }
     });
   }
 

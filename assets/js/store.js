@@ -56,6 +56,15 @@ function ratings(state0 = [], action) {
   }
 }
 
+function friends(state0 = [], action) {
+  switch (action.type) {
+    case "FRIENDS_LIST":
+      return action.data;
+    default:
+      return state0;
+  }
+}
+
 function root_reducer(state0, action) {
   //console.log("reducer", state0, action);
 
@@ -64,7 +73,8 @@ function root_reducer(state0, action) {
     users,
     restaurants,
     location,
-    ratings
+    ratings,
+    friends
   });
   let state1 = reducer(state0, action);
 
