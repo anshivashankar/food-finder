@@ -59,24 +59,34 @@ class Chat extends React.Component {
     render() {
       let messages = this.state.messages;
       console.log(this.state);
-      let messages_list = _.map(messages, (m) => <Message  message={m} />);
+      let footerStyle = {
+          position: 'fixed',
+          bottom: 0,
+          width: '100%',
+          height: '60px',
+          backgroundColor: '#ffffff',
+          verticalAlign: 'middle'
+      };
+      let messages_list = _.map(messages, (m) => <Message key={m.id}  message={m} />);
         return <div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                    </div>
-                    <div class="col-sm">
-                    <ul>
-                      {messages_list}
-                    </ul>
-                    </div>
-                    <div class="col-sm">
-                    </div>
+            <div className="container">
+              <div className="row">
+                <div className="col-lg">
+                  <h1>Chat</h1>
+                  {messages_list}
+                  <br/>
+                  <br/>
+                  <br/>
                 </div>
-                <input type="text" name="commentbox" id="commentbox"/>
+              </div>
+              <div className="row">
+              <footer style={footerStyle}>
+                <input type="text" className="col-xs-6" name="commentbox" id="commentbox"/>
                 <p onClick={() => this.sendMessage(
-                                       $("#commentbox").val())}
-                                       className="btn btn-primary">Send</p>
+                                     $("#commentbox").val())}
+                                     className="btn btn-primary">Send</p>
+              </footer>
+              </div>
             </div>
           </div>
     }
@@ -95,6 +105,6 @@ function state2props(state) {
 function Message(props) {
   let {message} = props;
   let messageWithName =  "" + message.sendername  + ": " + message.comment;
-  return <li> {messageWithName} </li>;
+  return <p> <b>{message.sendername}</b>: {message.comment} </p>;
 }
 

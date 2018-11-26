@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import _ from 'lodash';
+import util from './util';
 
 var location;
 
@@ -15,6 +16,18 @@ export default connect(({restaurants, location}) => ({restaurants, location}))((
       </div>;
 });
 
+function restInfo(props) {
+  console.log("In here");
+  let {restaurant} = props;
+  console.log(restaurant["name"]);
+  console.log("restinfo");
+  localStorage.setItem('restaurant_name', restaurant["name"]);
+  console.log(localStorage);
+  this.props.setTimeOut(5000);
+}
+
+
+
 function Restaurant(props) {
   let {restaurant} = props;
   let R = 6371;
@@ -22,6 +35,7 @@ function Restaurant(props) {
   let d = getDistance(resLocation["lat"], location["lat"], resLocation["lng"], location["long"]);
   let rName = restaurant["name"];
   rName = rName.replace(/\s+/g, '');
+  localStorage.setItem('restaurant_name', restaurant["name"]);
 
   let open = _.get(restaurant["opening_hours"], 'open_now');
   let openSign;
@@ -35,6 +49,18 @@ function Restaurant(props) {
     openSign = "Closed";
   }
 
+  function handleEvent() {
+    let {restaurant} = props;
+    localStorage.setItem("restaurant_id", restaurant["id"]);
+    localStorage.setItem('restaurant_name', restaurant["name"]);
+    localStorage.setItem('restaurant_price', restaurant["price_level"]);
+    localStorage.setItem('restaurant_rating', restaurant["rating"]);
+    localStorage.setItem('restaurant_address', restaurant["vicinity"]);
+    localStorage.setItem('restaurant_types', restaurant["types"]);
+    localStorage.setItem('restaurant_open', openSign);
+    localStorage.setItem('restaurant_distance', d);
+  }
+  
   return <div class="col-sm-6 mb-3">
     <div class="card text-white bg-dark mb-3">
     <h5 class="card-header">{restaurant["name"]}</h5>
@@ -44,11 +70,12 @@ function Restaurant(props) {
         <p class="card-text">Address: {restaurant["vicinity"]}</p>
         <p class="card-text">{openSign} </p>
         <p class="card-text"> Miles Away: {d} </p>
-        <a href={"/restaurant/" + rName} class="btn btn-light">See More</a>
+        <a  href={"/restaurant/" + rName} onClick={handleEvent} class="btn btn-light">See More</a>
       </div>
     </div>
   </div>;
 }
+ 
 
 
 // https://en.wikipedia.org/wiki/Haversine_formula
