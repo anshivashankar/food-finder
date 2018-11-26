@@ -47,14 +47,15 @@ class TheServer {
         window.location = "../";
         localStorage.setItem("token", resp.data.token);
         localStorage.setItem("user_id", resp.data.user_id);
-        localStorage.setItem("user_name", resp.data.user_name);
-        
+        localStorage.setItem("user_name", resp.data.user_name); 
       }
     });
   }
 
-  delete_user(id) {
-    $.ajax("/api/v1/users" + id, {
+  delete_user() {
+    let user_id = localStorage.getItem("user_id");
+    console.log("delete user");
+    $.ajax("/api/v1/users/" + user_id, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -64,6 +65,8 @@ class TheServer {
         store.dispatch({
           type: "DELETE_USER"
         });
+        localStorage.removeItem("token");
+        window.location = "/";
       }
     });
   }

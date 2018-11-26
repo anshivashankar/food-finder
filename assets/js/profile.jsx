@@ -39,7 +39,7 @@ class Profile extends React.Component {
         </div>
 
         <div class="container delete-container">
-          <button class="btn btn-primary delete-button">Delete Account</button>
+          <button class="btn btn-primary delete-button" onClick={api.delete_user}>Delete Account</button>
         </div>
       </div>
     );
