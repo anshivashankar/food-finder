@@ -66,11 +66,10 @@ class Rating extends React.Component {
   }
 
   render() {
+    let {review_id} = this.props.key;
     const user_loggedin = localStorage.getItem("user_id");
 
     const { user_id, comment_text, rating_number, name } = this.state;
-
-    console.log("STATE ", this.state);
 
     if (user_id == user_loggedin) {
       return (
@@ -82,7 +81,8 @@ class Rating extends React.Component {
               <h5 class="card-text">Your thoughts: </h5>
               <p>{comment_text}</p>
               <h5 class="card-text">Your rating: </h5>
-              <p> {rating_number}</p>
+              <p>{rating_number}</p>
+              <button onClick={() => api.remove_review(review_id)}>Delete Review</button>
             </div>
           </div>
         </div>

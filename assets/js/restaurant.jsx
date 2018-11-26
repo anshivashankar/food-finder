@@ -14,31 +14,42 @@ class RestaurantProfile extends React.Component {
   }
 
   render() {
-    console.log("restaurant profile");
-    console.log(this.props);
+    let rest_name = localStorage.getItem('restaurant_name');
+    let rest_address = localStorage.getItem('restaurant_address');
+    let rest_price = localStorage.getItem('restaurant_price');
+    let rest_distance = localStorage.getItem('restaurant_distance');
+    let rest_open = localStorage.getItem('restaurant_open');
+    let rest_types = localStorage.getItem('restaurant_types');
+
+    rest_types = rest_types.replace(/,/g, ', ');
+
+    console.log(localStorage);
     return (
       <div>
         <div class="container">
           <div class="row">
             <div class="col-sm" />
             <div class="col-sm">
-              <h1>Restaurant Profile</h1>
+              <h1>{rest_name}</h1>
             </div>
             <div class="col-sm" />
           </div>
         </div>
 
         <div class="container">
-          <h4> Food</h4>
-          <p>Here you can view your past ratings!</p>
+          <h5>{rest_open}</h5>
+          <h5>Address: {rest_address} </h5>
+          <h5>Price Range: {rest_price}</h5>
+          <h5>Distance: {rest_distance}</h5>
+          <h5>Categories: {rest_types}</h5>
         </div>
 
-        {/* <div class="container">
+        <div class="container">
           <RatingsList />
-        </div> */}
+        </div>
 
         <div class="container delete-container">
-          <button class="btn btn-primary ">Write a review</button>
+          <button class="btn btn-primary" >Write a review</button>
         </div>
       </div>
     );
