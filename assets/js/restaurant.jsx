@@ -44,13 +44,39 @@ class RestaurantProfile extends React.Component {
           <h5>Categories: {rest_types}</h5>
         </div>
 
-        <div class="container">
+        {/* <div class="container">
           <RatingsList />
-        </div>
+        </div> */}
 
-        <div class="container delete-container">
-          <button class="btn btn-primary" >Write a review</button>
+        <div className="container">
+          <button className="btn btn-primary" type="button" data-toggle="collapse" 
+                  data-target="#newReview" aria-expanded="false" aria-controls="collapseExample">
+          Write a Review
+        </button>  
+        <p></p>
+        
+
+        <div className="collapse" id="newReview">
+        <div className="card card-body">
+          <h2>Write a Review for</h2>
+          <form>
+            <div>
+            
+              <p>{rest_name}</p>
+            </div>
+
+            <div>
+              <textarea className="form-control" id="taskDesc" 
+                        placeholder="Description" aria-label="With textarea"></textarea>
+              <p></p>
+            </div>  
+          </form>
+          <button className="btn btn-primary" onClick={() => api.create_task()}>It's your problem now</button>
         </div>
+        <p></p>
+      </div>
+      </div>
+
       </div>
     );
   }
