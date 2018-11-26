@@ -36,7 +36,7 @@ class RatingsList extends React.Component {
       );
     });
 
-    console.log("Ratings ", allReviews);
+    //console.log("Ratings ", allReviews);
 
     // let users_reviews = _.map(allReviews, review =>
     //   review.key == user_id ? review : "null"
