@@ -40,7 +40,7 @@ class TheServer {
       data: JSON.stringify({ user: newuser }),
       success: resp => {
         // Now that we've got a user, authenticate.
-        this.create_session(email, pass);
+        this.create_session_register(email, pass);
         console.log(resp.data);
         //window.location = "../";
       }
@@ -89,7 +89,7 @@ class TheServer {
     });
   }
 
-  create_session(email, password) {
+  create_session_register(email, password) {
     $.ajax("/api/v1/sessions", {
       method: "post",
       dataType: "json",
