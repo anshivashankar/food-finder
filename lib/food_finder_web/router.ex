@@ -20,6 +20,7 @@ defmodule FoodFinderWeb.Router do
     get "/register", PageController, :register
     get "/profile", PageController, :profile
     get "/chat/:chat", PageController, :chat
+    get "/restaurant/:name", PageController, :restaurant
     
   end
 

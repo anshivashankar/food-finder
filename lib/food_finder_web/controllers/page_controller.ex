@@ -23,4 +23,8 @@ defmodule FoodFinderWeb.PageController do
     render conn, "chat.html", game: params["chat"]
   end
 
+  def restaurant(conn, _params) do 
+    render conn, "restaurant.html"
+  end
+
 end

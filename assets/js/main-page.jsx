@@ -22,7 +22,6 @@ class MainPage extends React.Component {
     }
 
     onPositionRecieved(position) {
-      console.log("position");
       let latNew = position.coords.latitude;
       let longNew = position.coords.longitude;
       store.dispatch({

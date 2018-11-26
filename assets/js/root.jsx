@@ -58,7 +58,9 @@ function MainPages(props) {
                <div> <MainPage /> </div>
             } />    
             <Route path="/profile" exact={true} render={() =>
-                <Profile />}/>    
+                <Profile />}/>
+            <Route path="/restaurant/:name" exact={true} render={() =>
+                <RestaurantProfile />}/>        
             <Route path="/chat/:chatname" render={() =>
                 <Chat />}/>
         </div> 

@@ -20,6 +20,8 @@ function Restaurant(props) {
   let R = 6371;
   let resLocation = restaurant["geometry"]["location"];
   let d = getDistance(resLocation["lat"], location["lat"], resLocation["lng"], location["long"]);
+  let rName = restaurant["name"];
+  rName = rName.replace(/\s+/g, '');
 
   let open = _.get(restaurant["opening_hours"], 'open_now');
   let openSign;
@@ -42,7 +44,7 @@ function Restaurant(props) {
         <p class="card-text">Address: {restaurant["vicinity"]}</p>
         <p class="card-text">{openSign} </p>
         <p class="card-text"> Miles Away: {d} </p>
-        <a href="?" class="btn btn-light">See More</a>
+        <a href={"/restaurant/" + rName} class="btn btn-light">See More</a>
       </div>
     </div>
   </div>;
