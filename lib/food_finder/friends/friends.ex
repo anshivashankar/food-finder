@@ -55,6 +55,7 @@ defmodule FoodFinder.Friends do
 
   """
   def create_friend(attrs) do
+    IO.inspect(attrs)
     %Friend{}
     |> Friend.changeset(attrs)
     |> Repo.insert()
