@@ -12,9 +12,10 @@ import Register from './register';
 import MainPage from './main-page';
 import Header from './header';
 import Profile from './profile';
+import Chat from './chat';
+import RestaurantProfile from './restaurant';
 
 export default function root_init(node) {
-    let prods = window.tasks;
     let ConnectedRoot = connect(state2props)(Root)
   
     ReactDOM.render(
@@ -26,15 +27,14 @@ export default function root_init(node) {
 class Root extends React.Component {
     constructor(props) {
       super(props);
-  
-    //   api.create_session("bob@example.com", "pass1");
-    //   api.fetch_users();
     }
   
     render() {
-    let {session, users} = this.props;
+    console.log(this.props.session)
     const token = localStorage.getItem('token'); // currently null
     console.log(token);
+    console.log(localStorage.getItem('user_id'));
+    console.log(localStorage.getItem('user_name'));
 
     if (token) {
        return <div >
@@ -59,7 +59,11 @@ function MainPages(props) {
                <div> <MainPage /> </div>
             } />    
             <Route path="/profile" exact={true} render={() =>
-                <Profile />}/>    
+                <Profile />}/>
+            <Route path="/restaurant/:name" exact={true} render={() =>
+                <RestaurantProfile />}/>        
+            <Route path="/chat/:chatname" render={() =>
+                <Chat />}/>
         </div> 
     </Router>
 </div>  

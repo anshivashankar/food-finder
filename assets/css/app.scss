@@ -3,10 +3,28 @@
 @import "~bootstrap/scss/bootstrap";
 
 .header {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .login-form {
-    padding-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+.delete-button {
+  float: right;
+  position: absolute;
+}
+
+.delete-container {
+  padding-top: 30px;
+}
+
+.card-padding {
+  padding-top: 1px;
+}
+
+.ratings-card {
+  background: #90de93;
+  margin: 30px;
 }

@@ -19,7 +19,7 @@ import "bootstrap";
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+import socket from "./socket";
 
 import store from './store';
 
@@ -27,5 +27,6 @@ import root_init from "./root";
 
 $(() => {
   let node = $('#root')[0];
+  //let channel = socket.channel("chat:" + window.chatName, {});
   root_init(node);
 });

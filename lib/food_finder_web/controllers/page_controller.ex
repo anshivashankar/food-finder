@@ -14,6 +14,17 @@ defmodule FoodFinderWeb.PageController do
   end
 
   def profile(conn, _params) do
-    render conn, "profile.html"
+    ratings = FoodFinder.Ratings.list_ratings()
+    |> Enum.map(&(Map.take(&1, [:user_id, :name, :comment_text, :rating_number, :restaurant_id])))
+    render conn, "profile.html", ratings: ratings
   end
+
+  def chat(conn, params) do
+    render conn, "chat.html", game: params["chat"]
+  end
+
+  def restaurant(conn, _params) do 
+    render conn, "restaurant.html"
+  end
+
 end

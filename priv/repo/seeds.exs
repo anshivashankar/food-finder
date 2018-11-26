@@ -27,3 +27,7 @@ bob    = Repo.insert!(%User{email: "bob@email.com", name: "Bob Bobson", password
 Repo.insert!(%Friend{primary_user_id: 1, secondary_user_id: 2})
 Repo.insert!(%Friend{primary_user_id: 1, secondary_user_id: 3})
 Repo.insert!(%Friend{primary_user_id: 2, secondary_user_id: 3})
+chikfila = Repo.insert!(%Rating{name: "Chik-Fil-A", restaurant_id: 1, user_id: 1, comment_text: "Superb!", rating_number: 5})
+wendys = Repo.insert!(%Rating{name: "Wendy's", restaurant_id: 3, user_id: 1, comment_text: "Gross!", rating_number: 1})
+
+bostonburgercompany = Repo.insert!(%Rating{name: "Boston Burger Comppany", restaurant_id: 2, user_id: 2, comment_text: "Wonderful!", rating_number: 4})

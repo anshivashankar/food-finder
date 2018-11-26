@@ -20,10 +20,11 @@ function Restaurant(props) {
   let R = 6371;
   let resLocation = restaurant["geometry"]["location"];
   let d = getDistance(resLocation["lat"], location["lat"], resLocation["lng"], location["long"]);
+  let rName = restaurant["name"];
+  rName = rName.replace(/\s+/g, '');
 
   let open = _.get(restaurant["opening_hours"], 'open_now');
   let openSign;
-  console.log(open);
   if(open) {
     openSign = "Open Now";
   }
@@ -42,7 +43,8 @@ function Restaurant(props) {
         <p class="card-text">Place Holder Rating: {restaurant["rating"]}</p>
         <p class="card-text">Address: {restaurant["vicinity"]}</p>
         <p class="card-text">{openSign} </p>
-        <a href="#" class="btn btn-light">See More</a>
+        <p class="card-text"> Miles Away: {d} </p>
+        <a href={"/restaurant/" + rName} class="btn btn-light">See More</a>
       </div>
     </div>
   </div>;
@@ -62,7 +64,7 @@ function getDistance(lat1, lat2, long1, long2) {
     Math.sin(dLong/2) * Math.sin(dLong/2);
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   let d = R * c; // Distance in km
-  return d * 0.62137119;
+  return parseFloat((d * 0.62137119).toFixed(2));
 }
 
 function deg2rad(deg) {

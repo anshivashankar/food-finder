@@ -8,39 +8,37 @@ import api from "./api";
 import store from "./store";
 import RatingsList from "./RatingsList";
 
-class Profile extends React.Component {
+class RestaurantProfile extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    let user_id = localStorage.getItem("user_id");
-    let user_name = localStorage.getItem("user_name");
-    console.log(user_name);
-
+    console.log("restaurant profile");
+    console.log(this.props);
     return (
       <div>
         <div class="container">
           <div class="row">
             <div class="col-sm" />
             <div class="col-sm">
-              <h1>Profile</h1>
+              <h1>Restaurant Profile</h1>
             </div>
             <div class="col-sm" />
           </div>
         </div>
 
         <div class="container">
-          <h4> Welcome back, {user_name}</h4>
+          <h4> Food</h4>
           <p>Here you can view your past ratings!</p>
         </div>
 
-        <div class="container">
+        {/* <div class="container">
           <RatingsList />
-        </div>
+        </div> */}
 
         <div class="container delete-container">
-          <button class="btn btn-danger delete-button" onClick={api.delete_user}>Delete Account</button>
+          <button class="btn btn-primary ">Write a review</button>
         </div>
       </div>
     );
@@ -50,8 +48,9 @@ class Profile extends React.Component {
 function state2props(state) {
   return {
     users: state.users,
-    session: state.session
+    session: state.session,
+    restaurant: state.restaurant,
   };
 }
 
-export default connect(state2props)(Profile);
+export default connect(state2props)(RestaurantProfile);

@@ -19,6 +19,8 @@ defmodule FoodFinderWeb.Router do
     get "/", PageController, :index
     get "/register", PageController, :register
     get "/profile", PageController, :profile
+    get "/chat/:chat", PageController, :chat
+    get "/restaurant/:name", PageController, :restaurant
     
   end
 
@@ -31,6 +33,7 @@ defmodule FoodFinderWeb.Router do
      resources "/sessions", SessionController, only: [:create]
      resources "/users", UserController
      resources "/friends", FriendController
+     resources "/ratings", RatingController, except: [:new, :edit]
 
    end
 end
