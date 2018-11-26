@@ -14,6 +14,8 @@ class RestaurantProfile extends React.Component {
   }
 
   render() {
+    console.log("restaurant profile");
+    console.log(this.props);
     return (
       <div>
         <div class="container">

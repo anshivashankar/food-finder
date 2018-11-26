@@ -44,10 +44,12 @@ class TheServer {
           type: "NEW_SESSION",
           data: resp.data
         });
-        window.location = "../";
+        console.log(resp.data);
+
         localStorage.setItem("token", resp.data.token);
         localStorage.setItem("user_id", resp.data.user_id);
         localStorage.setItem("user_name", resp.data.user_name); 
+        window.location = "../";
       }
     });
   }
@@ -100,7 +102,7 @@ class TheServer {
       data: null
     });
     localStorage.removeItem("token");
-    window.location.href = "/";
+    window.location = "../";
   }
 
   fetch_ratings() {

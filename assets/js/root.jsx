@@ -13,6 +13,7 @@ import MainPage from './main-page';
 import Header from './header';
 import Profile from './profile';
 import Chat from './chat';
+import RestaurantProfile from './restaurant';
 
 export default function root_init(node) {
     let ConnectedRoot = connect(state2props)(Root)
