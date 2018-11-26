@@ -16,11 +16,31 @@ class RatingsList extends React.Component {
   }
 
   render() {
+    const user_id = localStorage.getItem("user_id");
+    const user_name = localStorage.getItem("user_name");
+
     let { session, users, ratings } = this.props;
 
-    let allReviews = _.map(ratings, r => (
-      <Rating key={r.id} rating={r} users={users} session={session} />
-    ));
+    const usersReviews = review => {
+      return review.user_id == user_id ? review : null;
+    };
+
+    let allReviews = _.map(ratings, r => {
+      return (
+        <Rating
+          key={r.restaurant_id}
+          rating={r}
+          users={users}
+          session={session}
+        />
+      );
+    });
+
+    console.log("Ratings ", allReviews);
+
+    // let users_reviews = _.map(allReviews, review =>
+    //   review.key == user_id ? review : "null"
+    // );
 
     return (
       <div>
@@ -35,8 +55,10 @@ class RatingsList extends React.Component {
 class Rating extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      restaurant_id: this.props.rating.restaurant_id.name,
+      name: this.props.rating.name,
+      restaurant_id: this.props.rating.restaurant_id,
       user_id: this.props.rating.user_id,
       comment_text: this.props.rating.comment_text,
       rating_number: this.props.rating.rating_number
@@ -44,19 +66,30 @@ class Rating extends React.Component {
   }
 
   render() {
-    return (
-      <div className="card col-4">
-        <div className="card-body">
-          <div className="form-group">
-            <input
-              type="text"
-              className="card-title"
-              value={this.state.comment_text}
-            />
+    const user_loggedin = localStorage.getItem("user_id");
+
+    const { user_id, comment_text, rating_number, name } = this.state;
+
+    console.log("STATE ", this.state);
+
+    if (user_id == user_loggedin) {
+      return (
+        <div className="card col-4 ratings-card">
+          <div className="card-body">
+            <div className="form-group">
+              <h2 class="card-title">Review</h2>
+              <h5 class="card-text">{name}</h5>
+              <h5 class="card-text">Your thoughts: </h5>
+              <p>{comment_text}</p>
+              <h5 class="card-text">Your rating: </h5>
+              <p> {rating_number}</p>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 

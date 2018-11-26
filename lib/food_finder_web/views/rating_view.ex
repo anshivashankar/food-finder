@@ -12,6 +12,8 @@ defmodule FoodFinderWeb.RatingView do
 
   def render("rating.json", %{rating: rating}) do
     %{id: rating.id,
+      user_id: rating.user_id,
+      name: rating.name,
       restaurant_id: rating.restaurant_id,
       rating_number: rating.rating_number,
       comment_text: rating.comment_text}

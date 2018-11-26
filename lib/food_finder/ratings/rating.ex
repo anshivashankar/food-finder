@@ -4,10 +4,11 @@ defmodule FoodFinder.Ratings.Rating do
 
 
   schema "ratings" do
+    field :name, :string
     field :comment_text, :string
     field :rating_number, :integer
     field :restaurant_id, :integer
-    field :user_id, :id
+    belongs_to :user, FoodFinder.Users.User
 
     timestamps()
   end
@@ -15,7 +16,7 @@ defmodule FoodFinder.Ratings.Rating do
   @doc false
   def changeset(rating, attrs) do
     rating
-    |> cast(attrs, [:restaurant_id, :rating_number, :comment_text])
-    |> validate_required([:restaurant_id, :rating_number, :comment_text])
+    |> cast(attrs, [:restaurant_id, :rating_number, :comment_text, :user_id, :name])
+    |> validate_required([:restaurant_id, :rating_number, :comment_text, :name])
   end
 end
