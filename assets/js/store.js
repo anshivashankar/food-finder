@@ -12,6 +12,7 @@ function session(state0 = null, action) {
       return state0;
   }
 }
+
 function users(state0 = [], action) {
   switch (action.type) {
     case "USER_LIST":

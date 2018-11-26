@@ -89,7 +89,7 @@ class TheServer {
   }
 
   fetch_ratings() {
-    this.fetch_path("/api/v1/ratings", resp => {
+    this.fetch_path("/api/v1/ratings/", resp => {
       store.dispatch({
         type: "RATINGS_LIST",
         data: resp.data

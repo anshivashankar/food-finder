@@ -14,6 +14,9 @@ class Profile extends React.Component {
   }
 
   render() {
+    let user_id = localStorage.getItem("user_id");
+    let user_name = localStorage.getItem("user_name");
+
     return (
       <div>
         <div class="container">
@@ -24,19 +27,19 @@ class Profile extends React.Component {
             </div>
             <div class="col-sm" />
           </div>
-
-          <div class="row">
-            <button
-              type="submit"
-              onClick={api.delete_user()}
-              class="btn btn-primary"
-            >
-              Delete Account
-            </button>
-          </div>
         </div>
+
+        <div class="container">
+          <h4> Welcome back, {user_name}</h4>
+          <p>Here you can view your past ratings!</p>
+        </div>
+
         <div class="container">
           <RatingsList />
+        </div>
+
+        <div class="container delete-container">
+          <button class="btn btn-primary delete-button">Delete Account</button>
         </div>
       </div>
     );
