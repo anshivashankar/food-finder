@@ -19,4 +19,8 @@ defmodule FoodFinderWeb.PageController do
     render conn, "profile.html", ratings: ratings
   end
 
+  def chat(conn, params) do
+    render conn, "chat.html", game: params["chat"]
+  end
+
 end
