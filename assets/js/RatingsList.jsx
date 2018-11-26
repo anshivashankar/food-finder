@@ -36,7 +36,7 @@ class RatingsList extends React.Component {
       );
     });
 
-    console.log("Ratings ", allReviews);
+    //console.log("Ratings ", allReviews);
 
     // let users_reviews = _.map(allReviews, review =>
     //   review.key == user_id ? review : "null"
@@ -70,7 +70,7 @@ class Rating extends React.Component {
 
     const { user_id, comment_text, rating_number, name } = this.state;
 
-    console.log("STATE ", this.state);
+    //console.log("STATE ", this.state);
 
     if (user_id == user_loggedin) {
       return (

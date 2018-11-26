@@ -11,7 +11,8 @@ class FriendsList extends React.Component {
   constructor(props) {
     super(props);
 
-    let user_id = localStorage.getItem("user_id");
+    const user_id = localStorage.getItem("user_id");
+    const user_name = localStorage.getItem("user_name");
 
     api.fetch_users();
     api.fetch_friends(user_id);
@@ -20,11 +21,8 @@ class FriendsList extends React.Component {
   render() {
     let { session, users, friends } = this.props;
 
-    let user_name = localStorage.getItem("user_name");
-    console.log(user_name);
-
     let usersFriends = _.map(friends, f => {
-      return <Rating key={f.id} friends={f} users={users} session={session} />;
+      return <Friend key={f.id} friend={f} users={users} session={session} />;
     });
 
     return (
@@ -40,23 +38,17 @@ class Friend extends React.Component {
     super(props);
 
     this.state = {
-      user_id: this.props.friend.primary_user_id,
-      friend_id: this.props.friend.secondary_user_id
+      friend_id: this.props.friend.secondary_user_id,
+      users: this.props.users
     };
   }
 
   render() {
-    const user_loggedin = localStorage.getItem("user_id");
-
-    const { user_id, friend_id } = this.state;
-
-    console.log("STATE ", this.state);
-
-    if (user_id == user_loggedin) {
-      return <a class="list-group-item">{friend_id}</a>;
-    } else {
-      return <div />;
-    }
+    const friendName = u => {
+      return u.id == friend_id ? u.name : null;
+    };
+    const { users, friend_id } = this.state;
+    return <a class="list-group-item">{users.map(friendName)}</a>;
   }
 }
 

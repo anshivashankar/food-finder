@@ -17,7 +17,7 @@ class Profile extends React.Component {
   render() {
     let user_id = localStorage.getItem("user_id");
     let user_name = localStorage.getItem("user_name");
-    console.log(user_name);
+    //console.log(user_name);
 
     return (
       <div>
