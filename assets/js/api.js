@@ -203,12 +203,24 @@ class TheServer {
     method: "post",
     dataType: "json",
     contentType: "application/json; charset=UTF-8",
-    data: JSON.stringify({ratings: newReview}),
+    data: JSON.stringify({rating: newReview}),
     success: resp => {
       this.fetch_ratings();
     }
   });
-  }  
+  }
+  
+  delete_review(id) {
+    $.ajax("/api/v1/ratings/" + id, {
+      method: "delete",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: "",
+      success: resp => {
+        this.fetch_ratings();
+      }
+    });
+  }
 }
 
 export default new TheServer();
