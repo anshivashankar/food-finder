@@ -20,6 +20,7 @@ class RestaurantProfile extends React.Component {
     let rest_distance = localStorage.getItem('restaurant_distance');
     let rest_open = localStorage.getItem('restaurant_open');
     let rest_types = localStorage.getItem('restaurant_types');
+    let rest_id = localStorage.getItem('restaurant_id');
 
     rest_types = rest_types.replace(/,/g, ', ');
 
@@ -45,7 +46,7 @@ class RestaurantProfile extends React.Component {
         </div>
 
         <div class="container">
-          <RatingsList />
+          <RatingsList isProfile={false} ownerid={rest_id}/>
         </div>
 
         <div className="container">
@@ -82,6 +83,7 @@ class RestaurantProfile extends React.Component {
     );
   }
 }
+
 
 function state2props(state) {
   return {

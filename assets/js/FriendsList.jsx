@@ -23,7 +23,7 @@ class FriendsList extends React.Component {
     let { session, users, friends } = this.props;
 
     let usersFriends = _.map(friends, f => {
-      return <Friend key={f.id} friend={f} users={users} session={session} />;
+      return <Friend key={f.secondary_user_id} friend={f} users={users} session={session} />;
     });
 
     return (
@@ -66,12 +66,12 @@ class Friend extends React.Component {
 
     if (!(friend_id == user_id)) {
       return (
-        <a class="list-group-item">
+        <p class="list-group-item">
           {users.map(friendName)}
           <span style={chatStyle}>
             <Link to={"/chat/" + chat_1 + "+" + chat_2}>Chat!</Link>
           </span>
-        </a>
+        </p>
       );
     } else {
       return <div />;

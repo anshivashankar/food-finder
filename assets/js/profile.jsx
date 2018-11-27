@@ -37,7 +37,7 @@ class Profile extends React.Component {
         </div>
 
         <div class="container">
-          <RatingsList />
+          <RatingsList isProfile={true} ownerid={user_id}/>
         </div>
 
         <div class="container">
