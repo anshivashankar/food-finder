@@ -8,6 +8,7 @@ import api from "./api";
 import store from "./store";
 import RatingsList from "./RatingsList";
 import FriendsList from "./FriendsList";
+import NewFriends from "./NewFriends";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -46,6 +47,14 @@ class Profile extends React.Component {
 
         <div class="container">
           <FriendsList />
+        </div>
+
+        <div class="container">
+          <p>Here you can make new friends (or lose them)!</p>
+        </div>
+
+        <div class="container">
+          <NewFriends />
         </div>
 
         <div class="container delete-container">
