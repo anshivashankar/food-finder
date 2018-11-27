@@ -24,6 +24,7 @@ Yes.
 - Rating System
 	- Filtering of Ratings via Restaurant Profile / User Profile
 - Profile of User
+- Friends List Front-End implementation
 ### Tina
 - Login and Registration
 - Rendering Restaurant Lists on Main Page
