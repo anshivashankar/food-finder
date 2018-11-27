@@ -7,7 +7,7 @@ defmodule FoodFinder.Ratings.Rating do
     field :name, :string
     field :comment_text, :string
     field :rating_number, :integer
-    field :restaurant_id, :integer
+    field :restaurant_id, :string
     belongs_to :user, FoodFinder.Users.User
 
     timestamps()

@@ -4,7 +4,7 @@ defmodule FoodFinder.Repo.Migrations.CreateRatings do
   def change do
     create table(:ratings) do
       add :name, :text, null: false
-      add :restaurant_id, :integer, null: false
+      add :restaurant_id, :string, null: false
       add :rating_number, :integer, null: false
       add :comment_text, :text
       add :user_id, references(:users, on_delete: :delete_all)
