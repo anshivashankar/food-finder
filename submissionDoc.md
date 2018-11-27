@@ -21,7 +21,9 @@ Yes.
 - Chat system
 - Deployment
 ### James
-- Fill-in
+- Fetching restaurants
+- Setup on backend for Google API for deployment
+- Friends list
 
 ## App
 * What does your final app do?
