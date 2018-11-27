@@ -61,17 +61,25 @@ class Rating extends React.Component {
       restaurant_id: this.props.rating.restaurant_id,
       user_id: this.props.rating.user_id,
       comment_text: this.props.rating.comment_text,
-      rating_number: this.props.rating.rating_number
+      rating_number: this.props.rating.rating_number,
+      ownerid: this.props.rating.ownerid
     };
   }
 
   render() {
-    let {rating, users, session} = this.props;
     const user_loggedin = localStorage.getItem("user_id");
 
-    const { user_id, comment_text, rating_number, name } = this.state;
+    const {
+      user_id,
+      comment_text,
+      rating_number,
+      name,
+      isProfile,
+      restaurant_id,
+      ownerid
+    } = this.state;
 
-    if (user_id == user_loggedin) {
+    if (isProfile && user_id == user_loggedin) {
       return (
         <div className="card col-4 ratings-card">
           <div className="card-body">
@@ -82,13 +90,33 @@ class Rating extends React.Component {
               <p>{comment_text}</p>
               <h5 class="card-text">Your rating: </h5>
               <p>{rating_number}</p>
-              <button class="btn btn-danger" onClick={() => api.delete_review(rating.id)}>Delete Review</button>
+              <button onClick={() => api.remove_review()}>Delete Review</button>
             </div>
           </div>
         </div>
       );
     } else {
-      return <div />;
+      if (!isProfile && restaurant_id == ownerid) {
+        return (
+          <div className="card col-4 ratings-card">
+            <div className="card-body">
+              <div className="form-group">
+                <h2 class="card-title">Review</h2>
+                <h5 class="card-text">{name}</h5>
+                <h5 class="card-text">Your thoughts: </h5>
+                <p>{comment_text}</p>
+                <h5 class="card-text">Your rating: </h5>
+                <p>{rating_number}</p>
+                <button onClick={() => api.remove_review()}>
+                  Delete Review
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      } else {
+        return <div />;
+      }
     }
   }
 }

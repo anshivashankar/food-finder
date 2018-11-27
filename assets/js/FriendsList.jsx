@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import _ from "lodash";
 import $ from "jquery";
 import { Provider, connect } from "react-redux";
-import {Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import api from "./api";
 import store from "./store";
@@ -46,30 +46,36 @@ class Friend extends React.Component {
 
   render() {
     let chatStyle = {
-      float: 'right'
-    }
+      float: "right"
+    };
     const friendName = u => {
       return u.id == friend_id ? u.name : null;
     };
-    let user_id = localStorage.getItem('user_id');
+    let user_id = localStorage.getItem("user_id");
     const { users, friend_id } = this.state;
 
     let chat_1; // these are sorted before putting in the chat.
     let chat_2;
-    if(user_id < friend_id) {
+    if (user_id < friend_id) {
       chat_1 = user_id;
       chat_2 = friend_id;
-    }
-    else {
+    } else {
       chat_1 = friend_id;
       chat_2 = user_id;
     }
 
-
-    return <a class="list-group-item">{users.map(friendName)}
-             <span style={chatStyle}>
-             <Link to={'/chat/' + chat_1 + '+' + chat_2}>Chat!</Link></span>
-           </a>;
+    if (!(friend_id == user_id)) {
+      return (
+        <a class="list-group-item">
+          {users.map(friendName)}
+          <span style={chatStyle}>
+            <Link to={"/chat/" + chat_1 + "+" + chat_2}>Chat!</Link>
+          </span>
+        </a>
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 
