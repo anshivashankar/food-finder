@@ -4,6 +4,8 @@ import _ from "lodash";
 import $ from "jquery";
 import { Provider, connect } from "react-redux";
 
+import RestaurantRatings from "./RestaurantRatings";
+
 import api from "./api";
 import store from "./store";
 import RatingsList from "./RatingsList";
@@ -14,14 +16,14 @@ class RestaurantProfile extends React.Component {
   }
 
   render() {
-    let rest_name = localStorage.getItem('restaurant_name');
-    let rest_address = localStorage.getItem('restaurant_address');
-    let rest_price = localStorage.getItem('restaurant_price');
-    let rest_distance = localStorage.getItem('restaurant_distance');
-    let rest_open = localStorage.getItem('restaurant_open');
-    let rest_types = localStorage.getItem('restaurant_types');
+    let rest_name = localStorage.getItem("restaurant_name");
+    let rest_address = localStorage.getItem("restaurant_address");
+    let rest_price = localStorage.getItem("restaurant_price");
+    let rest_distance = localStorage.getItem("restaurant_distance");
+    let rest_open = localStorage.getItem("restaurant_open");
+    let rest_types = localStorage.getItem("restaurant_types");
 
-    rest_types = rest_types.replace(/,/g, ', ');
+    rest_types = rest_types.replace(/,/g, ", ");
 
     console.log(localStorage);
     return (
@@ -45,39 +47,57 @@ class RestaurantProfile extends React.Component {
         </div>
 
         <div class="container">
-          <RatingsList />
+          <RestaurantRatings />
         </div>
 
         <div className="container">
-          <button className="btn btn-primary" type="button" data-toggle="collapse" 
-                  data-target="#newReview" aria-expanded="false" aria-controls="collapseExample">
-          Write a Review
-        </button>  
-        <p></p>
-        
+          <button
+            className="btn btn-primary"
+            type="button"
+            data-toggle="collapse"
+            data-target="#newReview"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            Write a Review
+          </button>
+          <p />
 
-        <div className="collapse" id="newReview">
-        <div className="card card-body">
-          <h2>Write a Review for</h2>
-          <form>
-            <div>
-              <p>{rest_name}</p>
+          <div className="collapse" id="newReview">
+            <div className="card card-body">
+              <h2>Write a Review for</h2>
+              <form>
+                <div>
+                  <p>{rest_name}</p>
+                </div>
+
+                <div>
+                  <textarea
+                    className="form-control"
+                    id="reviewDesc"
+                    placeholder="Description"
+                    aria-label="With textarea"
+                  />
+                  <p />
+                  <label>Rating: </label>
+                  <input
+                    id="reviewNumber"
+                    type="number"
+                    name="quantity"
+                    max="5"
+                  />
+                </div>
+              </form>
+              <button
+                className="btn btn-primary"
+                onClick={() => api.create_review()}
+              >
+                Create
+              </button>
             </div>
-
-            <div>
-              <textarea className="form-control" id="reviewDesc" 
-                        placeholder="Description" aria-label="With textarea"></textarea>
-              <p></p>
-              <label>Rating: </label>
-              <input id="reviewNumber" type="number" name="quantity" max="5"></input>
-            </div>  
-          </form>
-          <button className="btn btn-primary" onClick={() => api.create_review()}>Create</button>
+            <p />
+          </div>
         </div>
-        <p></p>
-      </div>
-      </div>
-
       </div>
     );
   }
@@ -87,7 +107,7 @@ function state2props(state) {
   return {
     users: state.users,
     session: state.session,
-    restaurant: state.restaurant,
+    restaurant: state.restaurant
   };
 }
 
