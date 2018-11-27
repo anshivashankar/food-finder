@@ -39,7 +39,7 @@ class Friend extends React.Component {
     super(props);
 
     this.state = {
-      relationship_id: this.props.key,
+      relationship_id: this.props.friend.id,
       friend_id: this.props.friend.secondary_user_id,
       users: this.props.users
     };
@@ -73,6 +73,12 @@ class Friend extends React.Component {
           {users.map(friendName)}
           <span style={chatStyle}>
             <Link to={"/chat/" + chat_1 + "+" + chat_2}>Chat!</Link>
+            <button
+              class="btn btn-sm btn-danger"
+              onClick={() => api.delete_friend(this.state.relationship_id, user_id)}
+              >
+              Delete!
+            </button>
           </span>
         </a>
       );

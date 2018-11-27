@@ -11,7 +11,8 @@ defmodule FoodFinderWeb.FriendView do
   end
 
   def render("friend.json", %{friend: friend}) do
-    %{primary_user_id: friend.primary_user_id,
+    %{id: friend.id,
+      primary_user_id: friend.primary_user_id,
       secondary_user_id: friend.secondary_user_id}
   end
 end
