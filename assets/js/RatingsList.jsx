@@ -62,7 +62,8 @@ class Rating extends React.Component {
       user_id: this.props.rating.user_id,
       comment_text: this.props.rating.comment_text,
       rating_number: this.props.rating.rating_number,
-      ownerid: this.props.rating.ownerid
+      ownerid: this.props.rating.ownerid,
+      isProfile: this.props.isProfile
     };
   }
 

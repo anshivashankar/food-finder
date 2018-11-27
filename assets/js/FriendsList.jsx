@@ -51,6 +51,11 @@ class Friend extends React.Component {
     const friendName = u => {
       return u.id == friend_id ? u.name : null;
     };
+
+    const friendID = u => {
+      return u.id == friend_id ? friend_id : null;
+    };
+
     let user_id = localStorage.getItem("user_id");
     const { users, friend_id } = this.state;
 
@@ -71,6 +76,12 @@ class Friend extends React.Component {
           <span style={chatStyle}>
             <Link to={"/chat/" + chat_1 + "+" + chat_2}>Chat!</Link>
           </span>
+          <button
+            class="btn btn-sm btn-danger"
+            onClick={() => api.delete_friend(users.map(friendID))}
+          >
+            Delete!
+          </button>
         </a>
       );
     } else {
