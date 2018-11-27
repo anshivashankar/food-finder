@@ -21,9 +21,14 @@ Yes.
 
 * For each team member, what work did that person do on the project?
 ### Catalina
-- Fill-in
+- Rating System
+	- Filtering of Ratings via Restaurant Profile / User Profile
+- Profile of User
 ### Tina
-- Fill-in
+- Login and Registration
+- Rendering Restaurant Lists on Main Page
+- Rendering of Restaurant Profiles
+	- Ratings CRUD
 ### Ashwin 
 - Fetching and displaying restaurants
 - Chat system
