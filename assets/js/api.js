@@ -101,7 +101,7 @@ class TheServer {
         localStorage.setItem("token", resp.data.token);
         localStorage.setItem("user_id", resp.data.user_id);
         localStorage.setItem("user_name", resp.data.user_name);
-        window.location="../";
+        window.location = "../";
       }
     });
   }
@@ -136,15 +136,19 @@ class TheServer {
     });
   }
 
-  add_friend(user_id, new_friend_id) {
+  add_friend(new_friend_id) {
+    let user_id = localStorage.getItem("user_id");
+
+    let newFriend = {
+      primary_user_id: user_id,
+      secondary_user_id: new_friend_id
+    };
+
     $.ajax("/api/v1/friends", {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify({
-        primary_user_id: user_id,
-        secondary_user_id: new_friend_id
-      }),
+      data: JSON.stringify({ friend: newFriend }),
       success: resp => {
         store.dispatch({
           type: "ADD_FRIEND",
@@ -155,7 +159,7 @@ class TheServer {
   }
 
   delete_friend(deleted_friend) {
-    $.ajax("/api/v1/friends", {
+    $.ajax("/api/v1/friends/" + deleted_friend, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -188,28 +192,34 @@ class TheServer {
   }
 
   create_review() {
-  let restID = localStorage.getItem('restaurant_id');
-  let userID = localStorage.getItem('user_id');
-  let restname = localStorage.getItem('restaurant_name');
-  let comment = $('#reviewDesc').val();
-  let rating = $('#reviewNumber').val();
+    let restID = localStorage.getItem("restaurant_id");
+    let userID = localStorage.getItem("user_id");
+    let restname = localStorage.getItem("restaurant_name");
+    let comment = $("#reviewDesc").val();
+    let rating = $("#reviewNumber").val();
 
-  let newReview = {name: restname, comment_text: comment, rating_number: rating, restaurant_id: restID, user_id: userID};
+    let newReview = {
+      name: restname,
+      comment_text: comment,
+      rating_number: rating,
+      restaurant_id: restID,
+      user_id: userID
+    };
 
-  console.log(newReview);
-  console.log("create_review");
+    console.log(newReview);
+    console.log("create_review");
 
-  $.ajax("/api/v1/ratings", {
-    method: "post",
-    dataType: "json",
-    contentType: "application/json; charset=UTF-8",
-    data: JSON.stringify({rating: newReview}),
-    success: resp => {
-      this.fetch_ratings();
-    }
-  });
+    $.ajax("/api/v1/ratings", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ rating: newReview }),
+      success: resp => {
+        this.fetch_ratings();
+      }
+    });
   }
-  
+
   delete_review(id) {
     $.ajax("/api/v1/ratings/" + id, {
       method: "delete",

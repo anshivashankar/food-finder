@@ -39,12 +39,15 @@ class Friend extends React.Component {
     super(props);
 
     this.state = {
+      relationship_id: this.props.friend.id,
       friend_id: this.props.friend.secondary_user_id,
       users: this.props.users
     };
   }
 
   render() {
+    const { relationship_id, users, friend_id } = this.state;
+
     let chatStyle = {
       float: "right"
     };
@@ -52,7 +55,6 @@ class Friend extends React.Component {
       return u.id == friend_id ? u.name : null;
     };
     let user_id = localStorage.getItem("user_id");
-    const { users, friend_id } = this.state;
 
     let chat_1; // these are sorted before putting in the chat.
     let chat_2;
@@ -64,6 +66,7 @@ class Friend extends React.Component {
       chat_2 = user_id;
     }
 
+    console.log("RELATIONSHIP ", relationship_id);
     if (!(friend_id == user_id)) {
       return (
         <a class="list-group-item">
@@ -71,6 +74,12 @@ class Friend extends React.Component {
           <span style={chatStyle}>
             <Link to={"/chat/" + chat_1 + "+" + chat_2}>Chat!</Link>
           </span>
+          <button
+            onClick={() => api.delete_friend(relationship_id)}
+            class="btn btn-sm btn-danger"
+          >
+            Delete
+          </button>
         </a>
       );
     } else {
