@@ -154,17 +154,15 @@ class TheServer {
     });
   }
 
-  delete_friend(deleted_friend) {
-    $.ajax("/api/v1/friends", {
+  delete_friend(deleted_friend, user_id) {
+    $.ajax("/api/v1/friends/" + deleted_friend, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify({ deleted_friend }),
       success: resp => {
-        store.dispatch({
-          type: "DELETE_FRIEND",
-          data: resp.data
-        });
+        console.log("deleted");
+        this.fetch_friends(user_id);
       }
     });
   }

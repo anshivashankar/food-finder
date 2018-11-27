@@ -23,7 +23,7 @@ class FriendsList extends React.Component {
     let { session, users, friends } = this.props;
 
     let usersFriends = _.map(friends, f => {
-      return <Friend key={f.id} friend={f} users={users} session={session} />;
+      return <Friend key={f.id} friend={f} users={users} session={session} friendList={friends} />;
     });
 
     return (
@@ -39,9 +39,11 @@ class Friend extends React.Component {
     super(props);
 
     this.state = {
+      relationship_id: this.props.friend.id,
       friend_id: this.props.friend.secondary_user_id,
       users: this.props.users
     };
+    console.log(this.state);
   }
 
   render() {
@@ -70,6 +72,12 @@ class Friend extends React.Component {
           {users.map(friendName)}
           <span style={chatStyle}>
             <Link to={"/chat/" + chat_1 + "+" + chat_2}>Chat!</Link>
+            <button
+              class="btn btn-sm btn-danger"
+              onClick={() => api.delete_friend(this.state.relationship_id, user_id)}
+              >
+              Delete!
+            </button>
           </span>
         </a>
       );
