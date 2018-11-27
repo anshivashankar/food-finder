@@ -22,7 +22,8 @@ class RestaurantProfile extends React.Component {
     let rest_distance = localStorage.getItem("restaurant_distance");
     let rest_open = localStorage.getItem("restaurant_open");
     let rest_types = localStorage.getItem("restaurant_types");
-
+    let rest_id = localStorage.getItem("restaurant_id");
+    console.log("RESTAURANT ID ", rest_id);
     rest_types = rest_types.replace(/,/g, ", ");
 
     console.log(localStorage);
