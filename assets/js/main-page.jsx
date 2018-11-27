@@ -60,8 +60,6 @@ class MainPage extends React.Component {
         </div>
 
         <div class="row">
-          {this.state.location.lat}
-          {this.state.location.long}
           <RestaurantList />
         </div>
       </div>; 
