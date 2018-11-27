@@ -23,7 +23,7 @@ class FriendsList extends React.Component {
     let { session, users, friends } = this.props;
 
     let usersFriends = _.map(friends, f => {
-      return <Friend key={f.id} friend={f} users={users} session={session} friendList={friends} />;
+      return <Friend key={f.id} friend={f} users={users} session={session} />;
     });
 
     return (
@@ -43,7 +43,6 @@ class Friend extends React.Component {
       friend_id: this.props.friend.secondary_user_id,
       users: this.props.users
     };
-    console.log(this.state);
   }
 
   render() {
