@@ -7,7 +7,7 @@ import { Provider, connect } from "react-redux";
 import api from "./api";
 import store from "./store";
 
-class RatingsList extends React.Component {
+class RestaurantRatings extends React.Component {
   constructor(props) {
     super(props);
 
@@ -66,12 +66,14 @@ class Rating extends React.Component {
   }
 
   render() {
-    let { rating, users, session } = this.props;
+    let {rating, users, session} = this.props;
     const user_loggedin = localStorage.getItem("user_id");
 
-    const { user_id, comment_text, rating_number, name } = this.state;
+    const { user_id, comment_text, rating_number, name, restaurant_id } = this.state;
 
-    if (user_id == user_loggedin) {
+    let rest_id = localStorage.getItem("restaurant_id");
+  
+    if (restaurant_id == rest_id) {
       return (
         <div className="card col-4 ratings-card">
           <div className="card-body">
@@ -82,12 +84,7 @@ class Rating extends React.Component {
               <p>{comment_text}</p>
               <h5 class="card-text">Your rating: </h5>
               <p>{rating_number}</p>
-              <button
-                class="btn btn-danger"
-                onClick={() => api.delete_review(rating.id)}
-              >
-                Delete Review
-              </button>
+              <button class="btn btn-danger" onClick={() => api.delete_review(rating.id)}>Delete Review</button>
             </div>
           </div>
         </div>
@@ -98,6 +95,7 @@ class Rating extends React.Component {
   }
 }
 
+
 function state2props(state) {
   return {
     users: state.users,
@@ -106,4 +104,4 @@ function state2props(state) {
   };
 }
 
-export default connect(state2props)(RatingsList);
+export default connect(state2props)(RestaurantRatings);

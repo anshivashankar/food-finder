@@ -46,6 +46,8 @@ class Friend extends React.Component {
   }
 
   render() {
+    const { relationship_id, users, friend_id } = this.state;
+
     let chatStyle = {
       float: "right"
     };
@@ -53,7 +55,6 @@ class Friend extends React.Component {
       return u.id == friend_id ? u.name : null;
     };
     let user_id = localStorage.getItem("user_id");
-    const { users, friend_id } = this.state;
 
     let chat_1; // these are sorted before putting in the chat.
     let chat_2;
@@ -65,6 +66,7 @@ class Friend extends React.Component {
       chat_2 = user_id;
     }
 
+    console.log("RELATIONSHIP ", relationship_id);
     if (!(friend_id == user_id)) {
       return (
         <a class="list-group-item">
