@@ -8,7 +8,7 @@ import api from "./api";
 import store from "./store";
 import RatingsList from "./RatingsList";
 import FriendsList from "./FriendsList";
-import NewFriends from "./NewFriends";
+import NewFriends from "./newfriends";
 
 class Profile extends React.Component {
   constructor(props) {

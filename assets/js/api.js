@@ -154,6 +154,7 @@ class TheServer {
           type: "ADD_FRIEND",
           data: resp.data
         });
+        this.fetch_friends(user_id);
       }
     });
   }
